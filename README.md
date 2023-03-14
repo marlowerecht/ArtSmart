@@ -44,10 +44,11 @@ ArtSmart utilized React to develop the frontend.  There are a total of twelve co
 - BucketList.js
 - SeenArt.js
 - Profile.js
-- Header.js
+- Search.js
 - ArtList.js
 - ArtCard.js
 - DeleteAccount.js
+- Header.js
 
 Component Tree:
 ![Component Tree](public/images/component-tree.png)
@@ -79,10 +80,13 @@ Component Tree:
 ### `ArtCard.js`
 **ArtCard** is the that renders the details for every piece of art.
 
+### `Search.js`
+**Search** is visible on `Homepage.js` and allows users to filter for art based on the title of the piece, the artist, or the medium.  It renders `ArtList.js` with the appropriate responses.
+
 ### `Profile.js`
 **Profile** is the component where users than view and update their personal information.  It also contains a button that directs users to `DeleteAccount.js` is they want to delete their account.
 
-### `DeleteAccount.js1
+### `DeleteAccount.js`
 **DeleteAccount** is the component where users confirm that they would like to delete their account.  Upon confirmation, users are redirected to `Signup.js`.
 
 ### `Header.js`
