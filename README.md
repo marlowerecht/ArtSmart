@@ -10,7 +10,7 @@ ArtSmart utilizes Ruby on Rails to develop the backend.  There are four tables `
 
 A user have many paintings and have many artists through paintings.  An artist has many paintings and many users through paintings.  A painting belongs to a user and an artist.  Finally, a painting has many comments, and each comment belongs to a painting.
 
-![Entity relationship diagram](public/images/erd.png)
+![Entity Relationship Diagram](public/images/erd.png)
 
 ### Model Validations
 
