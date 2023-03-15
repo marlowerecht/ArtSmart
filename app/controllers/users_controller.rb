@@ -13,8 +13,13 @@ class UsersController < ApplicationController
 
     def update
         user = find_user
-        user.update!(user_params)
-        render json: user, status: :accepted
+
+        if params[:password].blank?
+            params.delete(:password)
+            user_params.delete(:password)
+            user.update!(user_params)
+            render json: user, status: :accepted
+        end
     end
 
     def destroy
@@ -30,11 +35,13 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.permit(
-            :name,
-            :username,
-            :email,
-            :password
-        )
+        params.permit(:name, :username, :email, :password)
     end
 end
+
+# user_params = params.require(:user).permit(:name, :username, :email, :password)
+      
+# # Remove the password and password confirmation keys for empty values
+# user_params.delete(:password) unless user_params[:password].present?
+
+# user_params
