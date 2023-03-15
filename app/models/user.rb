@@ -13,7 +13,7 @@ class User < ApplicationRecord
     validates :email, presence: true
     validates :email, uniqueness: true
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-    validates :password, presence: true
+    validates :password, presence: true, :if => :password #makes sure the validation doesn't trigger on an update that doesn't involve password
     # validates :password, format: { with: PASSWORD_REGEX }
     validates :password, length: { maximum: 30 }
 end
