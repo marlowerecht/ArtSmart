@@ -1,6 +1,6 @@
-function ArtCard() {
+function ArtCard({ painting }) {
     return (
-        <h1>ArtCard</h1>
+        <h1>{painting.name}</h1>
     )
 }
 

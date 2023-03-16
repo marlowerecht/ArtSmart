@@ -10,39 +10,54 @@ import SeenArt from "./components/SeenArt.js";
 
 function App() {
   const [ currentUser, setCurrentUser ] = useState('')
+  const [ paintings, setPaintings ] = useState([])
 
+  // fetches data of current user
   useEffect(() => {
     fetch('/authorized_user')
     .then(res => {
       if(res.ok) {
-        res.json().then(user => setCurrentUser(user))
+        res.json().then(user => console.log(user))
       }
     })
   },[])
 
+  // fetches paintings
+  useEffect(() => {
+    fetch('/paintings')
+    .then(res => {
+      if(res.ok) {
+        res.json().then(paintings => setPaintings(paintings))
+      }
+    })
+  },[])
+
+  // sets current user to logged in user
   function onLogin(user) {
     setCurrentUser(user)
   }
 
+  // logs out user
   function onLogout() {
     setCurrentUser(null)
   }
+
+  console.log(currentUser)
 
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
           <Route path="/login">
-            {/* {!currentUser ? <Login onLogin={onLogin} /> : <Homepage />} */}
             <Login onLogin={onLogin} />
           </Route>
           <Route path="/homepage">
             <Header />
-            <Homepage currentUser={currentUser}/>
+            <Homepage paintings={paintings}/>
           </Route>
           <Route path="/mygallery">
             <Header />
-            <MyGallery />
+            <MyGallery currentUser={currentUser}/>
           </Route>
           <Route path="/bucketlist">
             <Header />
