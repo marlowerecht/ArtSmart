@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import DeleteAccount from './DeleteAccount.js';
 
 function Profile({ onLogout }) {
     const history = useHistory()
@@ -20,8 +21,9 @@ function Profile({ onLogout }) {
 
     return (
         <div>
-            <h1>Profile</h1>
+            <h1>profile</h1>
             <button onClick={handleLogoutClick}>Logout</button>
+            <DeleteAccount />
         </div>
     )
 }

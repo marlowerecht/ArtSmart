@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from './components/Login.js';
 import Homepage from './components/Homepage.js';
-import Profile from './components/Profile.js'
+import Profile from './components/Profile.js';
+import Header from './components/Header.js';
+import MyGallery from './components/MyGallery.js'
+import BucketList from "./components/BucketList.js";
+import SeenArt from "./components/SeenArt.js";
 
 function App() {
   const [ currentUser, setCurrentUser ] = useState('')
@@ -15,7 +19,6 @@ function App() {
 
   function onLogin(user) {
     setCurrentUser(user)
-    console.log(user)
   }
 
   function onLogout() {
@@ -31,9 +34,23 @@ function App() {
             <Login onLogin={onLogin} />
           </Route>
           <Route path="/homepage">
+            <Header />
             <Homepage />
           </Route>
+          <Route path="/mygallery">
+            <Header />
+            <MyGallery />
+          </Route>
+          <Route path="/bucketlist">
+            <Header />
+            <BucketList />
+          </Route>
+          <Route path="/seenart">
+            <Header />
+            <SeenArt />
+          </Route>
           <Route path="/profile">
+            <Header />
             <Profile onLogout={onLogout}/>
           </Route>
         </Switch>
