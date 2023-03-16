@@ -4,10 +4,11 @@ import { useHistory } from "react-router-dom";
 import Search from './Search.js'
 import ArtList from './ArtList'
 
-function Homepage() {
+function Homepage({ currentUser }) {
     return (
         <div>
             <h1>homepage</h1>
+            <h2>hello, {currentUser.name}</h2>
             <Search />
             <ArtList />
         </div>

@@ -11,11 +11,14 @@ import SeenArt from "./components/SeenArt.js";
 function App() {
   const [ currentUser, setCurrentUser ] = useState('')
 
-  // useEffect(() => {
-  //   fetch("/hello")
-  //     .then((r) => r.json())
-  //     .then((data) => setCount(data.count));
-  // }, []);
+  useEffect(() => {
+    fetch('/authorized_user')
+    .then(res => {
+      if(res.ok) {
+        res.json().then(user => setCurrentUser(user))
+      }
+    })
+  },[])
 
   function onLogin(user) {
     setCurrentUser(user)
@@ -35,7 +38,7 @@ function App() {
           </Route>
           <Route path="/homepage">
             <Header />
-            <Homepage />
+            <Homepage currentUser={currentUser}/>
           </Route>
           <Route path="/mygallery">
             <Header />
