@@ -8,11 +8,11 @@ function Profile({ onLogout }) {
 
     function handleLogoutClick() {
         fetch ('/logout', {
-            method: 'DELETE'
+            method: 'DELETE',
         })
         .then(res => {
             if(res.ok) {
-                onLogout(null)
+                onLogout()
                 history.push('/login')
                 }
             }

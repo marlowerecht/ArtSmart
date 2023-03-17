@@ -4,16 +4,16 @@ import { useHistory } from "react-router-dom";
 import Search from './Search.js'
 import ArtList from './ArtList'
 
-function Homepage({ currentUser, paintings }) {
+function Homepage({ user }) {
 
-    console.log(currentUser)
+    console.log(user)
 
     return (
         <div>
             <h1>homepage</h1>
-            <h2>hello, {currentUser}</h2>
+            {user ? <h2>hello, {user.name}</h2> : <h2>loading...</h2>}
             <Search />
-            <ArtList currentUser={currentUser} paintings={paintings}/>
+            {/* <ArtList currentUser={currentUser} paintings={paintings}/> */}
         </div>
     )
 }
