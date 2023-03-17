@@ -22,17 +22,15 @@ function App() {
     });
   },[])
 
-  console.log(currentUser)
-
   // fetches paintings
-  // useEffect(() => {
-  //   fetch('/paintings')
-  //   .then(res => {
-  //     if(res.ok) {
-  //       res.json().then(paintings => setPaintings(paintings))
-  //     }
-  //   })
-  // },[])
+  useEffect(() => {
+    fetch('/paintings')
+    .then(res => {
+      if(res.ok) {
+        res.json().then((paintings) => setPaintings(paintings))
+      }
+    })
+  },[])
 
   // sets current user to logged in user
   function onLogin(user) {
@@ -53,7 +51,7 @@ function App() {
           </Route>
           <Route path="/homepage">
             <Header />
-            <Homepage user={currentUser}/>
+            <Homepage user={currentUser} paintings={paintings}/>
           </Route>
           <Route path="/mygallery">
             <Header />
