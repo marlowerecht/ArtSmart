@@ -2,7 +2,9 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :comments
-    has_many :paintings, through: :comments
+    has_many :favorites
+    # has_many :paintings, through: :comments
+    has_many :paintings, through: :favorites
 
     # tests if passowrd has at least one number, one lowercase letter, one uppercase letter, and is at least 8 characters long
     # PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/

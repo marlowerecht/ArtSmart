@@ -11,6 +11,7 @@ import SeenArt from "./components/SeenArt.js";
 function App() {
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ paintings, setPaintings ] = useState([])
+  const [ favorites, setFavorites ] = useState([])
 
   // fetches data of current user
   useEffect(() => {
@@ -32,10 +33,22 @@ function App() {
     })
   },[])
 
+  useEffect(() => {
+    fetch('/favorites')
+    .then(res => {
+      if(res.ok) {
+        res.json().then((favorites) => setFavorites(favorites))
+      }
+    })
+  },[])
+
   // sets current user to logged in user
   function onLogin(user) {
     setCurrentUser(user)
+    // setFavorites(favorites.filter(fav => fav.user_id === currentUser.id))
   }
+
+  console.log(favorites)
 
   // logs out user
   function onLogout() {
@@ -55,7 +68,7 @@ function App() {
           </Route>
           <Route path="/mygallery">
             <Header />
-            <MyGallery paintings={paintings}/>
+            <MyGallery userFavorites={favorites} user={currentUser} paintings={paintings}/>
           </Route>
           <Route path="/bucketlist">
             <Header />
