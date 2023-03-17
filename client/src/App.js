@@ -55,15 +55,15 @@ function App() {
           </Route>
           <Route path="/mygallery">
             <Header />
-            <MyGallery />
+            <MyGallery paintings={paintings}/>
           </Route>
           <Route path="/bucketlist">
             <Header />
-            <BucketList />
+            <BucketList paintings={paintings}/>
           </Route>
           <Route path="/seenart">
             <Header />
-            <SeenArt />
+            <SeenArt paintings={paintings}/>
           </Route>
           <Route path="/profile">
             <Header />
