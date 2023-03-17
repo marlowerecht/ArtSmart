@@ -1,17 +1,15 @@
 import ArtCard from './ArtCard.js';
 
-function ArtList({ currentUser }) {
+function ArtList({ paintings }) {
 
-    // console.log(currentUser.paintings)
-
-    // const renderPaintings = paintings.map(painting => {
-    //     return <ArtCard key={painting.id} painting={painting}/>
-    // })
+    const renderPaintings = paintings.map(painting => {
+        return <ArtCard key={painting.id} painting={painting}/>
+    })
 
     return (
         <div>
             <h1>ArtList</h1>
-            {/* {renderPaintings} */}
+            {renderPaintings}
         </div>
     )
 }
