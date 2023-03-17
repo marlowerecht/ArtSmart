@@ -6,14 +6,12 @@ import ArtList from './ArtList'
 
 function Homepage({ user, paintings }) {
 
-    console.log(user)
-
     return (
         <div>
             <h1>homepage</h1>
             {user ? <h2>hello, {user.name}</h2> : <h2>loading...</h2>}
             <Search />
-            <ArtList user={user} paintings={paintings}/>
+            <ArtList paintings={paintings}/>
         </div>
     )
 }

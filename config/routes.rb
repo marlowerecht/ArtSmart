@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorites, only: [:index, :show]
   resources :comments, only: [:index, :create, :update, :destroy]
   resources :paintings, only: [:index, :update]
   resources :artists, only: [:show]
