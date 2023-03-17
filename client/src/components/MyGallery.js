@@ -2,10 +2,6 @@ import ArtList from "./ArtList";
 
 function MyGallery({ user, paintings, userFavorites }) {
 
-    console.log(user)
-    console.log(paintings)
-    console.log(userFavorites)
-
     const findUserFavs = () => {
         const favoritesAndUserIDs = userFavorites.filter(favorite => favorite.user_id === user.id)
 
@@ -22,7 +18,7 @@ function MyGallery({ user, paintings, userFavorites }) {
         <div>
             <h1>My Gallery</h1>
             {(paintings && userFavorites) ?
-                <ArtList paintings={findUserFavs()}/> : <h3>Loading from gallery...</h3>}
+                <ArtList paintings={findUserFavs()}/> : <h3>Loading gallery...</h3>}
         </div>
     )
 }
