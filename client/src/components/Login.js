@@ -29,7 +29,6 @@ function Login({ onLogin }) {
             if(res.ok) {
                 res.json().then(user => {
                     onLogin(user)
-                    console.log(user)
                     setFormData(initialFormValues)
                     history.push('/homepage')
                 })

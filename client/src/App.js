@@ -9,28 +9,30 @@ import BucketList from "./components/BucketList.js";
 import SeenArt from "./components/SeenArt.js";
 
 function App() {
-  const [ currentUser, setCurrentUser ] = useState('')
+  const [ currentUser, setCurrentUser ] = useState(null)
   const [ paintings, setPaintings ] = useState([])
 
   // fetches data of current user
   useEffect(() => {
-    fetch('/authorized_user')
+    fetch('/me')
     .then(res => {
       if(res.ok) {
-        res.json().then(user => console.log(user))
+        res.json().then((user) => setCurrentUser(user));
       }
-    })
+    });
   },[])
 
+  console.log(currentUser)
+
   // fetches paintings
-  useEffect(() => {
-    fetch('/paintings')
-    .then(res => {
-      if(res.ok) {
-        res.json().then(paintings => setPaintings(paintings))
-      }
-    })
-  },[])
+  // useEffect(() => {
+  //   fetch('/paintings')
+  //   .then(res => {
+  //     if(res.ok) {
+  //       res.json().then(paintings => setPaintings(paintings))
+  //     }
+  //   })
+  // },[])
 
   // sets current user to logged in user
   function onLogin(user) {
@@ -42,8 +44,6 @@ function App() {
     setCurrentUser(null)
   }
 
-  console.log(currentUser)
-
   return (
     <BrowserRouter>
       <div className="App">
@@ -53,11 +53,11 @@ function App() {
           </Route>
           <Route path="/homepage">
             <Header />
-            <Homepage paintings={paintings}/>
+            <Homepage user={currentUser}/>
           </Route>
           <Route path="/mygallery">
             <Header />
-            <MyGallery currentUser={currentUser}/>
+            <MyGallery />
           </Route>
           <Route path="/bucketlist">
             <Header />
