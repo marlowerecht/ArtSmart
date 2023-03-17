@@ -1,6 +1,6 @@
 import ArtCard from './ArtCard.js';
 
-function ArtList({ paintings }) {
+function ArtList({ paintings, favs }) {
 
     return (
         <div>
@@ -8,7 +8,7 @@ function ArtList({ paintings }) {
             {paintings ? 
             
                 paintings.map(painting => {
-                    return <ArtCard key={painting.id} painting={painting}/>
+                    return <ArtCard key={painting.id} painting={painting} favs={favs}/>
 
             }) 
 

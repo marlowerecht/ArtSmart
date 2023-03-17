@@ -9,6 +9,7 @@ import BucketList from "./components/BucketList.js";
 import SeenArt from "./components/SeenArt.js";
 
 function App() {
+  //state
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ paintings, setPaintings ] = useState([])
   const [ favorites, setFavorites ] = useState([])
@@ -23,7 +24,7 @@ function App() {
     });
   },[])
 
-  // fetches paintings
+  // fetches all paintings
   useEffect(() => {
     fetch('/paintings')
     .then(res => {
@@ -33,6 +34,7 @@ function App() {
     })
   },[])
 
+  // fetches all favorites
   useEffect(() => {
     fetch('/favorites')
     .then(res => {
@@ -42,13 +44,19 @@ function App() {
     })
   },[])
 
+  //returns array of paintings that the current user has favorited
+  function findUserFavs() {
+    const favoritesAndUserIDs = favorites.filter(favorite => favorite.user_id === currentUser.id)
+    const favoritesAndPaintingsIDs = favoritesAndUserIDs.map(favorite => favorite.id)
+    const favs = paintings.filter(painting => {
+      return favoritesAndPaintingsIDs.includes(painting.id)})
+    return favs
+  }
+
   // sets current user to logged in user
   function onLogin(user) {
     setCurrentUser(user)
-    // setFavorites(favorites.filter(fav => fav.user_id === currentUser.id))
   }
-
-  console.log(favorites)
 
   // logs out user
   function onLogout() {
@@ -64,7 +72,7 @@ function App() {
           </Route>
           <Route path="/homepage">
             <Header />
-            <Homepage user={currentUser} paintings={paintings}/>
+            <Homepage user={currentUser} paintings={paintings} userFavorites={(currentUser && paintings && favorites) ? findUserFavs() : null} />
           </Route>
           <Route path="/mygallery">
             <Header />
