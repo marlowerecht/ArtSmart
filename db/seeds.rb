@@ -1,3 +1,9 @@
+User.delete_all
+Painting.delete_all
+Artist.delete_all
+Comment.delete_all
+Favorite.delete_all
+
 puts "here we go..."
 
 # users
@@ -13,11 +19,11 @@ puts "done seeding users!"
 
 puts "seeding paintings..."
 
-sunset = Painting.create(name: "Sunset", image: "", department: "The American Wing", period: "", culture: "American", date: "1905-1906", medium: "Watercolor, gouache, and graphite on white wove paper", dimensions: "12 7/16 x 18 1/2 in. (31.6 x 47 cm)", tags: ["Landscapes"], user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: 2)
+mona_lisa = Painting.create(name: "Mona Lisa", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/540px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg", department: "", period: "", culture: "", date: "c. 1503-1506", medium: "oil on poplar panel", dimensions: "77 cm x 53 cm (30 in x 21 in)", tags: [], user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: 1)
 
-piece = Painting.create(name: "Piece", image: "", department: "Asian Art", period: "", culture: "Japan", date: "17th century", medium: "Silk / Compound weave", dimensions: "8 1/4 x 1 3/4 in. (21 x 4.4 cm)", tags: ["Flowers"], user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: 1)
+girl_with_a_pearl_earring = Painting.create(name: "Girl with a Pearl Earring", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/540px-1665_Girl_with_a_Pearl_Earring.jpg", department: "", period: "", culture: "", date: "c. 1665", medium: "oil on canvas", dimensions: "44.5 cm x 39 cm (17.5 in x 15 in)", tags: [], user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: 2)
 
-ring = Painting.create(name: "Large Ring with Figural Decoration", image: "", department: "Asian Art", period: "Bronze and Iron Age period", culture: "Vietnam (North, Highlands)", date: "500 BCE - 300 CE", medium: "Bronze", dimensions: "H. 7/8 in. (2.2 cm); W. 4 7/8 in. (12.4 cm); Diam. 4 in. (10.2 cm)", tags: "", user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: 1)
+starry_night = Painting.create(name: "The Starry Night", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/700px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg", department: "", period: "", culture: "", date: "c. 1889", medium: "oil on canvas", dimensions: "73.7 cm x 92.1 cm (29.01 in x 36.26 in)", tags: "", user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: 3)
 
 puts "done seeding paintings!"
 
@@ -35,9 +41,9 @@ puts "done seeding comments!"
 
 puts "seeding artists..."
 
-unknown = Artist.create(name: "unknown", nationality: "see artwork for more info", born: "unknown", died: "unknown")
-sargent = Artist.create(name: "John Singer Sargent", nationality: "American", born: "1856", died: "1905")
-wright = Artist.create(name: "Frank Lloyd Wright", nationality: "American", born: "1867", died: "1959")
+leonardo_da_vinci = Artist.create(name: "Leonardo da Vinci", nationality: "Italian", born: "1452", died: "1519")
+johannes_vermeer = Artist.create(name: "Johannes Vermeer", nationality: "Dutch", born: "1632", died: "1675")
+vincent_van_gogh = Artist.create(name: "Vincent van Gogh", nationality: "Dutch", born: "1853", died: "1890")
 
 puts "done seeding artists!"
 
