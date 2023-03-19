@@ -64,7 +64,19 @@ function App() {
     setCurrentUser(null)
   }
 
-  // console.log(favorites)
+  function onAddFavPainting(painting) {
+    const updatedFavorites = favorites.push(painting)
+    setFavorites(updatedFavorites)
+  }
+
+  function onRemoveFavPainting(painting) {
+    const updatedFavorites = favorites.filter(favorite => favorite.painting_id !== painting.id)
+    setFavorites(updatedFavorites)
+    console.log(painting)
+    console.log(updatedFavorites)
+  }
+
+  console.log(paintings)
 
   return (
     <BrowserRouter>
@@ -75,11 +87,11 @@ function App() {
           </Route>
           <Route path="/homepage">
             <Header />
-            <Homepage user={currentUser} paintings={paintings} favorites={favorites} favPaintings={findUserFavs()}/>
+            <Homepage user={currentUser} paintings={paintings} favorites={favorites} favPaintings={findUserFavs()} onAddFavPainting={onAddFavPainting} onRemoveFavPainting={onRemoveFavPainting}/>
           </Route>
           <Route path="/mygallery">
             <Header />
-            <MyGallery favorites={favorites} user={currentUser} galleryPaintings={findUserFavs()} favPaintings={findUserFavs()}/>
+            <MyGallery favorites={favorites} user={currentUser} galleryPaintings={findUserFavs()} favPaintings={findUserFavs()} onAddFavPainting={onAddFavPainting} onRemoveFavPainting={onRemoveFavPainting}/>
           </Route>
           <Route path="/bucketlist">
             <Header />
