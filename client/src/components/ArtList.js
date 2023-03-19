@@ -1,14 +1,14 @@
 import ArtCard from './ArtCard.js';
 
-function ArtList({ paintings, favs }) {
+function ArtList({ paintings, favorites, favPaintings }) {
 
     return (
         <div>
             <h1>ArtList</h1>
-            {paintings ? 
+            {(paintings && favorites) ? 
             
                 paintings.map(painting => {
-                    return <ArtCard key={painting.id} painting={painting} favs={favs}/>
+                    return <ArtCard key={painting.id} painting={painting} favState={favPaintings.includes(painting)}/>
 
             }) 
 
@@ -19,3 +19,5 @@ function ArtList({ paintings, favs }) {
 }
 
 export default ArtList;
+
+// favorites={favorites} favState={isFav(painting)}

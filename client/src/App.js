@@ -44,7 +44,8 @@ function App() {
     })
   },[])
 
-  //returns array of paintings that the current user has favorited
+  //MY GALLERY PAINTINGS
+  // returns array of paintings that the current user has favorited
   function findUserFavs() {
     const favoritesAndUserIDs = favorites.filter(favorite => favorite.user_id === currentUser.id)
     const favoritesAndPaintingsIDs = favoritesAndUserIDs.map(favorite => favorite.id)
@@ -63,6 +64,8 @@ function App() {
     setCurrentUser(null)
   }
 
+  // console.log(favorites)
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -72,11 +75,11 @@ function App() {
           </Route>
           <Route path="/homepage">
             <Header />
-            <Homepage user={currentUser} paintings={paintings} userFavorites={(currentUser && paintings && favorites) ? findUserFavs() : null} />
+            <Homepage user={currentUser} paintings={paintings} favorites={favorites} favPaintings={findUserFavs()}/>
           </Route>
           <Route path="/mygallery">
             <Header />
-            <MyGallery userFavorites={favorites} user={currentUser} paintings={paintings}/>
+            <MyGallery favorites={favorites} user={currentUser} galleryPaintings={findUserFavs()} favPaintings={findUserFavs()}/>
           </Route>
           <Route path="/bucketlist">
             <Header />

@@ -1,25 +1,25 @@
 import { useState } from 'react';
 
-function ArtCard({ painting, favs }) {
+function ArtCard({ painting, favorites, favState }) {
 
     const [ showingAddToFavButton, setShowingAddToFavButton ] = useState(true)
 
-    const [ isFav, setIsFav ] = useState(false)
+    const [ isFav, setIsFav ] = useState(favState)
 
-    function checkingIfFav() {
-        const favOrNot = favs.includes(painting)
-        if (favOrNot === true) {
-            setIsFav(true)
-        }
-        else {
-            setIsFav(false)
-        }
-    }
+    console.log(isFav)
+
+    // function checkingIfFav() {
+    //     const favOrNot = favs.includes(painting)
+    //     if (favOrNot === true) {
+    //         setIsFav(true)
+    //     }
+    //     else {
+    //         setIsFav(false)
+    //     }
+    // }
 
     //check is useEffect could work
     // checkingIfFav()
-
-    console.log(isFav)
 
     // attributes of each painting
     const { name, image, department, period, culture, date, medium, dimensions, tags, artist, user_favorite, user_bucketlist, user_seen } = painting
@@ -41,7 +41,7 @@ function ArtCard({ painting, favs }) {
             <p>{tags}</p>
             <p>{artist.name}</p>
 
-            {/* <button onClick={handleAddToGallery}>add to my gallery</button> */}
+            {isFav ? <button>remove from gallery</button> : <button>add to gallery</button>}
         </div>
     )
 }
