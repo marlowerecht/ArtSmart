@@ -11,6 +11,7 @@ function EditCommentForm({ currentContent, comment, onEditComment, viewingEditFo
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
+    // submits updated comment
     function handleSubmit(e) {
         e.preventDefault();
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Comment from './Comment.js';
 import AddCommentForm from './AddCommentForm.js';
 
-function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting, onPublishComment, onEditComment }) {
+function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting, onPublishComment, onEditComment, onDeleteComment }) {
 
     const [ isFav, setIsFav ] = useState(favState)
     const [ viewingComments, setViewingComments ] = useState(false)
@@ -13,7 +13,12 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
 
     // renders comments depending on state
     const renderedComments = comments.map(comment => {
-        return <Comment key={comment.id} comment={comment} currentUser={user} onEditComment={onEditComment}/>
+        return <Comment 
+                    key={comment.id} 
+                    comment={comment} 
+                    currentUser={user} 
+                    onEditComment={onEditComment} 
+                    onDeleteComment={onDeleteComment}/>
     })
 
     // adds painting to my gallery

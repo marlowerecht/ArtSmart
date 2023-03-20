@@ -33,6 +33,11 @@ function AddCommentForm({ painting, user, commentSetterFunction, onPublishCommen
         .then(commentSetterFunction(false))
     }
 
+    // hides form is user decides not to write comment
+    function handleNevermind() {
+        commentSetterFunction(false)
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -45,6 +50,7 @@ function AddCommentForm({ painting, user, commentSetterFunction, onPublishCommen
                 </label>
                 <button type='submit'>publish comment</button>
             </form>
+            <button onClick={handleNevermind}>nevermind</button>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import EditCommentForm from "./EditCommentForm.js";
 import { useState } from 'react';
 
-function Comment({ comment, currentUser, onEditComment }) {
+function Comment({ comment, currentUser, onEditComment, onDeleteComment }) {
     const [ viewingEditForm, setViewingEditForm ] = useState(false)
 
     const { content, user } = comment
@@ -14,6 +14,14 @@ function Comment({ comment, currentUser, onEditComment }) {
         setViewingEditForm(value)
     }
 
+    // handles deleting comment
+    function handleDeleteComment() {
+        fetch(`/comments/${comment.id}`, {
+            method: 'DELETE'
+        })
+        .then(() => onDeleteComment(comment))
+    }
+
     return (
         <div>
             <p>{content}</p>
@@ -23,8 +31,10 @@ function Comment({ comment, currentUser, onEditComment }) {
                                     comment={comment} 
                                     currentContent={content}
                                     onEditComment={onEditComment} 
-                                    viewingEditFormSetterFunction={viewingEditFormSetterFunction} 
+                                    viewingEditFormSetterFunction={viewingEditFormSetterFunction}
+                                    onDeleteComment={onDeleteComment} 
                                 /> : null}
+            {(user.id === currentUser.id) ? <button onClick={handleDeleteComment}>delete comment</button> : null}
         </div>
     )
 }
