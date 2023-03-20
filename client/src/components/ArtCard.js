@@ -5,7 +5,7 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
     const [ isFav, setIsFav ] = useState(favState)
 
     // attributes of each painting
-    const { name, image, department, period, culture, date, medium, dimensions, tags, artist, user_favorite, user_bucketlist, user_seen } = painting
+    const { name, image, department, period, culture, date, medium, dimensions, tags, artist, comments, user_favorite, user_bucketlist, user_seen } = painting
 
     function handleAddFavPainting() {
         const addedPainting = {
@@ -56,6 +56,9 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
             <p>{dimensions}</p>
             <p>{tags}</p>
             <p>{artist.name}</p>
+            <p>comments:</p>
+            <p>{comments.map(comment => comment.content)}</p>
+
 
             {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting()}>add to gallery</button>}
         </div>
