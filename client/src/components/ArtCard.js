@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Comment from './Comment.js';
-import CommentForm from './CommentForm.js';
+import AddCommentForm from './AddCommentForm.js';
 
-function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting, onPublishComment }) {
+function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting, onPublishComment, onEditComment }) {
 
     const [ isFav, setIsFav ] = useState(favState)
     const [ viewingComments, setViewingComments ] = useState(false)
@@ -13,7 +13,7 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
 
     // renders comments depending on state
     const renderedComments = comments.map(comment => {
-        return <Comment key={comment.id} comment={comment} />
+        return <Comment key={comment.id} comment={comment} currentUser={user} onEditComment={onEditComment}/>
     })
 
     // adds painting to my gallery
@@ -90,7 +90,7 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
             <p>{tags}</p>
             <p>{artist.name}</p>
             {viewingComments ? <button onClick={handleHideComments}>hide comments</button> : <button onClick={handleShowComments}>view comments</button>}
-            {commentFormShowing ? <CommentForm painting={painting} user={user} commentSetterFunction={wrapCommentFormSetterFunction} onPublishComment={onPublishComment}/> : <button onClick={handleShowCommentForm}>write comment</button>}
+            {commentFormShowing ? <AddCommentForm painting={painting} user={user} commentSetterFunction={wrapCommentFormSetterFunction} onPublishComment={onPublishComment}/> : <button onClick={handleShowCommentForm}>write comment</button>}
             {viewingComments ? renderedComments : null}
 
         </div>

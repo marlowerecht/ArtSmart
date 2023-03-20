@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function CommentForm({ painting, user, commentSetterFunction, onPublishComment }) {
+function AddCommentForm({ painting, user, commentSetterFunction, onPublishComment }) {
     const current = new Date();
     const today = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
 
@@ -49,4 +49,4 @@ function CommentForm({ painting, user, commentSetterFunction, onPublishComment }
     )
 }
 
-export default CommentForm;
+export default AddCommentForm;

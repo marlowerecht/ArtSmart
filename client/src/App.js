@@ -94,6 +94,14 @@ function App() {
     setComments([...comments, newComment])
   }
 
+  // updates comments when an edit is made
+  function onEditComment(revisedComment) {
+    const updatedComments = comments.map(comment => {
+      return comment.id === revisedComment.id ? revisedComment : comment
+    })
+    setComments(updatedComments)
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -110,7 +118,8 @@ function App() {
               favPaintings={findUserFavs()} 
               onAddFavPainting={onAddFavPainting} 
               onRemoveFavPainting={onRemoveFavPainting}
-              onPublishComment={onPublishComment}/>
+              onPublishComment={onPublishComment}
+              onEditComment={onEditComment}/>
           </Route>
           <Route path="/mygallery">
             <Header />
@@ -121,7 +130,8 @@ function App() {
               favPaintings={findUserFavs()} 
               onAddFavPainting={onAddFavPainting} 
               onRemoveFavPainting={onRemoveFavPainting}
-              onPublishComment={onPublishComment}/>
+              onPublishComment={onPublishComment}
+              onEditComment={onEditComment}/>
           </Route>
           <Route path="/bucketlist">
             <Header />
