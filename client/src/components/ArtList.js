@@ -1,6 +1,6 @@
 import ArtCard from './ArtCard.js';
 
-function ArtList({ paintings, favorites, favPaintings, onAddFavPainting, onRemoveFavPainting }) {
+function ArtList({ user, paintings, favorites, favPaintings, onAddFavPainting, onRemoveFavPainting }) {
 
     return (
         <div>
@@ -8,7 +8,13 @@ function ArtList({ paintings, favorites, favPaintings, onAddFavPainting, onRemov
             {(paintings && favorites) ? 
             
                 paintings.map(painting => {
-                    return <ArtCard key={painting.id} painting={painting} favState={favPaintings.includes(painting)} onAddFavPainting={onAddFavPainting} onRemoveFavPainting={onRemoveFavPainting} />
+                    return <ArtCard 
+                                key={painting.id} 
+                                user={user} 
+                                painting={painting} 
+                                favState={favPaintings.includes(painting)} 
+                                onAddFavPainting={onAddFavPainting} 
+                                onRemoveFavPainting={onRemoveFavPainting} />
 
             }) 
 

@@ -47,8 +47,11 @@ function App() {
   //MY GALLERY PAINTINGS
   // returns array of paintings that the current user has favorited
   function findUserFavs() {
+    // make array of favorites that belong to current user
     const favoritesAndUserIDs = favorites.filter(favorite => favorite.user_id === currentUser.id)
-    const favoritesAndPaintingsIDs = favoritesAndUserIDs.map(favorite => favorite.id)
+    // make array of the IDs of the paintings that are favorited by the current user
+    const favoritesAndPaintingsIDs = favoritesAndUserIDs.map(favorite => favorite.painting_id)
+    // filters through all paintings to see if any of the paintings have ID of favorited painting ID
     const favs = paintings.filter(painting => {
       return favoritesAndPaintingsIDs.includes(painting.id)})
     return favs
@@ -64,19 +67,16 @@ function App() {
     setCurrentUser(null)
   }
 
+  //add paintnig to user's gallery (favorites)
   function onAddFavPainting(painting) {
-    const updatedFavorites = favorites.push(painting)
-    setFavorites(updatedFavorites)
+    setFavorites([...favorites, painting])
   }
 
+  //removes painting from user's gallery (favorites)
   function onRemoveFavPainting(painting) {
     const updatedFavorites = favorites.filter(favorite => favorite.painting_id !== painting.id)
     setFavorites(updatedFavorites)
-    console.log(painting)
-    console.log(updatedFavorites)
   }
-
-  console.log(paintings)
 
   return (
     <BrowserRouter>
@@ -87,11 +87,23 @@ function App() {
           </Route>
           <Route path="/homepage">
             <Header />
-            <Homepage user={currentUser} paintings={paintings} favorites={favorites} favPaintings={findUserFavs()} onAddFavPainting={onAddFavPainting} onRemoveFavPainting={onRemoveFavPainting}/>
+            <Homepage 
+              user={currentUser} 
+              paintings={paintings} 
+              favorites={favorites} 
+              favPaintings={findUserFavs()} 
+              onAddFavPainting={onAddFavPainting} 
+              onRemoveFavPainting={onRemoveFavPainting}/>
           </Route>
           <Route path="/mygallery">
             <Header />
-            <MyGallery favorites={favorites} user={currentUser} galleryPaintings={findUserFavs()} favPaintings={findUserFavs()} onAddFavPainting={onAddFavPainting} onRemoveFavPainting={onRemoveFavPainting}/>
+            <MyGallery 
+              favorites={favorites} 
+              user={currentUser} 
+              galleryPaintings={findUserFavs()} 
+              favPaintings={findUserFavs()} 
+              onAddFavPainting={onAddFavPainting} 
+              onRemoveFavPainting={onRemoveFavPainting}/>
           </Route>
           <Route path="/bucketlist">
             <Header />
