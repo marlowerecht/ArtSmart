@@ -2,8 +2,6 @@ function Comment({ comment }) {
 
     const { content, user } = comment
 
-    console.log(user)
-
     return (
         <div>
             <p>{content}</p>

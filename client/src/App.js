@@ -13,7 +13,7 @@ function App() {
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ paintings, setPaintings ] = useState([])
   const [ favorites, setFavorites ] = useState([])
-  const [ users, setUsers ] = useState([])
+  const [ comments, setComments ] = useState([])  
 
   // fetches data of current user
   useEffect(() => {
@@ -45,15 +45,25 @@ function App() {
     })
   },[])
 
-    // fetches all favorites
-    useEffect(() => {
-      fetch('/users')
-      .then(res => {
-        if(res.ok) {
-          res.json().then((users) => setUsers(users))
-        }
-      })
-    },[])
+  // fetches all comments
+  useEffect(() => {
+    fetch('/comments')
+    .then(res => {
+      if(res.ok) {
+        res.json().then((comments) => setComments(comments))
+      }
+    })
+  },[])
+
+  // sets current user to logged in user
+  function onLogin(user) {
+    setCurrentUser(user)
+  }
+
+  // logs out user
+  function onLogout() {
+    setCurrentUser(null)
+  }
 
   //MY GALLERY PAINTINGS
   // returns array of paintings that the current user has favorited
@@ -68,16 +78,6 @@ function App() {
     return favs
   }
 
-  // sets current user to logged in user
-  function onLogin(user) {
-    setCurrentUser(user)
-  }
-
-  // logs out user
-  function onLogout() {
-    setCurrentUser(null)
-  }
-
   //add paintnig to user's gallery (favorites)
   function onAddFavPainting(painting) {
     setFavorites([...favorites, painting])
@@ -87,6 +87,11 @@ function App() {
   function onRemoveFavPainting(painting) {
     const updatedFavorites = favorites.filter(favorite => favorite.painting_id !== painting.id)
     setFavorites(updatedFavorites)
+  }
+
+  // adds a new comments
+  function onPublishComment(newComment) {
+    setComments([...comments, newComment])
   }
 
   return (
@@ -105,7 +110,7 @@ function App() {
               favPaintings={findUserFavs()} 
               onAddFavPainting={onAddFavPainting} 
               onRemoveFavPainting={onRemoveFavPainting}
-              allUsers={users}/>
+              onPublishComment={onPublishComment}/>
           </Route>
           <Route path="/mygallery">
             <Header />
@@ -116,7 +121,7 @@ function App() {
               favPaintings={findUserFavs()} 
               onAddFavPainting={onAddFavPainting} 
               onRemoveFavPainting={onRemoveFavPainting}
-              allUsers={users}/>
+              onPublishComment={onPublishComment}/>
           </Route>
           <Route path="/bucketlist">
             <Header />

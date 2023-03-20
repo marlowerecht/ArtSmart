@@ -1,7 +1,7 @@
 import Search from './Search.js'
 import ArtList from './ArtList'
 
-function Homepage({ user, paintings, favorites, favPaintings, onAddFavPainting, onRemoveFavPainting, allUsers }) {
+function Homepage({ user, paintings, favorites, favPaintings, onAddFavPainting, onRemoveFavPainting, onPublishComment }) {
 
     return (
         <div>
@@ -15,7 +15,7 @@ function Homepage({ user, paintings, favorites, favPaintings, onAddFavPainting, 
                 favPaintings={favPaintings} 
                 onAddFavPainting={onAddFavPainting} 
                 onRemoveFavPainting={onRemoveFavPainting}
-                allUsers={allUsers}/>
+                onPublishComment={onPublishComment}/>
         </div>
     )
 }
