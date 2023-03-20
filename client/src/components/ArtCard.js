@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function ArtCard({ painting, favorites, favState, onAddFavPainting, onRemoveFavPainting }) {
+function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting }) {
 
     const [ isFav, setIsFav ] = useState(favState)
 
@@ -8,13 +8,36 @@ function ArtCard({ painting, favorites, favState, onAddFavPainting, onRemoveFavP
     const { name, image, department, period, culture, date, medium, dimensions, tags, artist, user_favorite, user_bucketlist, user_seen } = painting
 
     function handleAddFavPainting() {
-        setIsFav(true)
-        onAddFavPainting(painting)
+        const addedPainting = {
+            user_id: user.id,
+            painting_id: painting.id
+        }
+
+        fetch('/favorites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(addedPainting)
+        })
+        .then(res => res.json())
+        .then(() => onAddFavPainting(painting))
+        .then(setIsFav(true))
     }
 
     function handleRemoveFavPainting() {
-        setIsFav(false)
-        onRemoveFavPainting(painting)
+        //filters favorites and grabs only those that belong to this painting
+        const favoritesOfThisPainting = favorites.filter(favorite => favorite.painting_id === painting.id)
+        //filters that array and finds the favorite instance belonging to current user
+        const favoriteOfThisPaintingAndUser = favoritesOfThisPainting.filter(favorite => favorite.user_id === user.id)
+        const favorite_id = favoriteOfThisPaintingAndUser.id
+
+        fetch(`/favorites/${favorite_id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(() => onRemoveFavPainting(painting))
+        .then(setIsFav(false))
     }
 
     return (
@@ -34,7 +57,7 @@ function ArtCard({ painting, favorites, favState, onAddFavPainting, onRemoveFavP
             <p>{tags}</p>
             <p>{artist.name}</p>
 
-            {isFav ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting}>add to gallery</button>}
+            {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting()}>add to gallery</button>}
         </div>
     )
 }
