@@ -38,6 +38,7 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
         setViewingEditForm(true)
     }
 
+    //wrapper function to pass down setter function
     function wrapViewingEditFormSetterFunction(value) {
         setViewingEditForm(value)
     }

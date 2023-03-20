@@ -111,8 +111,7 @@ function App() {
     setComments(updatedComments)
   }
 
-  console.log(currentUser)
-
+  // updated account information of current user
   function onEditAccountInfo(updatedUserInfo) {
     console.log(updatedUserInfo)
     currentUser["name"] = updatedUserInfo.name 
