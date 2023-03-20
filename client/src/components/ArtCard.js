@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import Comment from './Comment.js';
 
-function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting }) {
+function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting, allUsers }) {
 
     const [ isFav, setIsFav ] = useState(favState)
 
@@ -57,7 +58,9 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
             <p>{tags}</p>
             <p>{artist.name}</p>
             <p>comments:</p>
-            <p>{comments.map(comment => comment.content)}</p>
+            {comments.map(comment => {
+                return <Comment key={comment.id} comment={comment} />
+            })}
 
 
             {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting()}>add to gallery</button>}

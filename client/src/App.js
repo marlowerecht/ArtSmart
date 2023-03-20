@@ -13,6 +13,7 @@ function App() {
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ paintings, setPaintings ] = useState([])
   const [ favorites, setFavorites ] = useState([])
+  const [ users, setUsers ] = useState([])
 
   // fetches data of current user
   useEffect(() => {
@@ -43,6 +44,16 @@ function App() {
       }
     })
   },[])
+
+    // fetches all favorites
+    useEffect(() => {
+      fetch('/users')
+      .then(res => {
+        if(res.ok) {
+          res.json().then((users) => setUsers(users))
+        }
+      })
+    },[])
 
   //MY GALLERY PAINTINGS
   // returns array of paintings that the current user has favorited
@@ -93,7 +104,8 @@ function App() {
               favorites={favorites} 
               favPaintings={findUserFavs()} 
               onAddFavPainting={onAddFavPainting} 
-              onRemoveFavPainting={onRemoveFavPainting}/>
+              onRemoveFavPainting={onRemoveFavPainting}
+              allUsers={users}/>
           </Route>
           <Route path="/mygallery">
             <Header />
@@ -103,7 +115,8 @@ function App() {
               galleryPaintings={findUserFavs()} 
               favPaintings={findUserFavs()} 
               onAddFavPainting={onAddFavPainting} 
-              onRemoveFavPainting={onRemoveFavPainting}/>
+              onRemoveFavPainting={onRemoveFavPainting}
+              allUsers={users}/>
           </Route>
           <Route path="/bucketlist">
             <Header />
