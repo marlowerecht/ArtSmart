@@ -7,6 +7,7 @@ import Header from './components/Header.js';
 import MyGallery from './components/MyGallery.js'
 import BucketList from "./components/BucketList.js";
 import SeenArt from "./components/SeenArt.js";
+import DeleteAccount from "./components/DeleteAccount.js";
 
 function App() {
   //state
@@ -110,6 +111,10 @@ function App() {
     setComments(updatedComments)
   }
 
+  function onEditAccountInfo(updatedUserInfo) {
+    currentUser.update(updatedUserInfo)
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -153,9 +158,14 @@ function App() {
           </Route>
           <Route path="/profile">
             <Header />
-            <Profile onLogout={onLogout}/>
+            <Profile onLogout={onLogout} user={currentUser} onEditAccountInfo={onEditAccountInfo}/>
           </Route>
         </Switch>
+        <Route path='/deleteaccount'>
+          <Header />
+          <DeleteAccount />
+        </Route>
+
       </div>
     </BrowserRouter>
   );
