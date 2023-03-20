@@ -102,6 +102,14 @@ function App() {
     setComments(updatedComments)
   }
 
+  // deltes comment
+  function onDeleteComment(deletedComment) {
+    const updatedComments = comments.filter(comment => {
+      return comment.id !== deletedComment.id
+    })
+    setComments(updatedComments)
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -119,7 +127,8 @@ function App() {
               onAddFavPainting={onAddFavPainting} 
               onRemoveFavPainting={onRemoveFavPainting}
               onPublishComment={onPublishComment}
-              onEditComment={onEditComment}/>
+              onEditComment={onEditComment}
+              onDeleteComment={onDeleteComment}/>
           </Route>
           <Route path="/mygallery">
             <Header />
@@ -131,7 +140,8 @@ function App() {
               onAddFavPainting={onAddFavPainting} 
               onRemoveFavPainting={onRemoveFavPainting}
               onPublishComment={onPublishComment}
-              onEditComment={onEditComment}/>
+              onEditComment={onEditComment}
+              onDeleteComment={onDeleteComment}/>
           </Route>
           <Route path="/bucketlist">
             <Header />
