@@ -3,14 +3,14 @@ class PaintingsController < ApplicationController
     #gets all of the paintings
     def index
         paintings = Painting.all 
-        render json: paintings, status: :ok
+        render json: paintings, include: ['artist', 'comments', 'comments.user'], status: :ok
     end
 
     #updates the painting depending on how the user feels about it
     def update
         painting = Painting.find(params[:id])
         painting.update!(painting_params)
-        render json: painting, status: :accepted
+        render json: painting, include: ['artist', 'comments', 'comments.user'], status: :accepted
     end
 
     private
