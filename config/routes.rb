@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/me', to: 'users#show'
   post "/signup", to: "users#create"
+  delete '/deleteaccount', to: 'users#destroy'
 end
