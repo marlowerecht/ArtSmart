@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
     def destroy
         user = find_user
+        session.delete :user_id
         user.destroy
         head :no_content
     end

@@ -192,7 +192,7 @@ function App() {
         </Switch>
         <Route path='/deleteaccount'>
           <Header />
-          <DeleteAccount />
+          <DeleteAccount user={currentUser}/>
         </Route>
         <Route path='/signup'>
           <Signup onLogin={onLogin}/>
