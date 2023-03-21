@@ -14,7 +14,8 @@ function App() {
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ paintings, setPaintings ] = useState([])
   const [ favorites, setFavorites ] = useState([])
-  const [ comments, setComments ] = useState([])  
+  const [ comments, setComments ] = useState([])
+  const [ searchTerm, setSearchTerm ] = useState('')  
 
   // fetches data of current user
   useEffect(() => {
@@ -119,6 +120,27 @@ function App() {
     currentUser["email"] = updatedUserInfo.email
   }
 
+  function filterSearch(value) {
+    setSearchTerm(value)
+    const filteredPaintings = paintings.filter(painting => {
+      return painting.name.toLowerCase().includes(searchTerm.toLowerCase()) || painting.artist.name.toLowerCase().includes(searchTerm.toLowerCase())
+    })
+    console.log(filteredPaintings)
+    // paintings.filter(painting => {
+    //   if(searchTerm === '') {
+    //     return painting
+    //   } else if(painting.name.toLowerCase()).includes(searchTerm.toLowerCase()) || painting.artist.name.toLowerCase().includes(searchTerm.toLowerCase()) {
+    //     return painting
+    //   }
+    //   }
+    // )
+    if(searchTerm === '') {
+      setPaintings(paintings)
+    } else {
+      setPaintings(filteredPaintings)
+    }
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -137,7 +159,9 @@ function App() {
               onRemoveFavPainting={onRemoveFavPainting}
               onPublishComment={onPublishComment}
               onEditComment={onEditComment}
-              onDeleteComment={onDeleteComment}/>
+              onDeleteComment={onDeleteComment}
+              searchTerm={searchTerm}
+              filterSearch={filterSearch}/>
           </Route>
           <Route path="/mygallery">
             <Header />
