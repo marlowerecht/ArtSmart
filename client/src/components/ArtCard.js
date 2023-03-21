@@ -48,26 +48,14 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
 
     //not working bc can't read 'favorites'
     function handleRemoveFavPainting() {
-        // //filters favorites and grabs only those that belong to this painting
-        // const favoritesOfThisPainting = favorites.filter(favorite => favorite.painting_id === painting.id)
-        // //filters that array and finds the favorite instance belonging to current user
-        // const favoriteOfThisPaintingAndUser = favoritesOfThisPainting.filter(favorite => favorite.user_id === user.id)
-        // const favorite_id = favoriteOfThisPaintingAndUser.id
 
-        // {favorites ? favorites.filter(favorite => favorite.painting_id === painting.id).filter(favorite => favorite.user_id === user.id).id : null}
-
-        // const id = favorites.filter(favorite => favorite.painting_id === painting.id && favorite.user_id === user.id).id
-
-        const favorite_id = favorites.filter(favorite => favorite.painting_id === painting.id && favorite.user_id === user.id).id
-
-        console.log(favorite_id)
+        const favorite_id = favorites.filter(favorite => favorite.painting_id === painting.id && favorite.user_id === user.id)[0].id
 
         fetch(`/favorites/${favorite_id}`, {
             method: 'DELETE'
         })
-        .then(res => res.json())
         .then(() => onRemoveFavPainting(painting))
-        .then(setIsFav(false))
+        .then(() => setIsFav(false))
     }
 
     // shows comments
@@ -99,7 +87,7 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
                 <input type='checkbox' name='seenArt' value={user_seen}/>
             </label>
             
-            {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting()}>add to gallery</button>}
+            {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting}>add to gallery</button>}
             
             <p>{department}</p>
             <p>{period}</p>

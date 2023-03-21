@@ -33,10 +33,10 @@ function App() {
     fetch('/paintings')
     .then(res => {
       if(res.ok) {
-        res.json().then((paintings) => setPaintings(paintings))
+        return res.json().then((paintings) => setPaintings(paintings))
       }
     })
-  },[])
+  },[currentUser])
 
   // fetches all favorites
   useEffect(() => {
@@ -46,7 +46,7 @@ function App() {
         res.json().then((favorites) => setFavorites(favorites))
       }
     })
-  },[])
+  },[currentUser])
 
   // fetches all comments
   useEffect(() => {
@@ -56,7 +56,7 @@ function App() {
         res.json().then((comments) => setComments(comments))
       }
     })
-  },[])
+  },[currentUser])
 
   // sets current user to logged in user
   function onLogin(user) {
@@ -65,7 +65,7 @@ function App() {
 
   // logs out user
   function onLogout() {
-    setCurrentUser(null)
+    setCurrentUser({id: null})
   }
 
   //MY GALLERY PAINTINGS
@@ -80,6 +80,7 @@ function App() {
       return favoritesAndPaintingsIDs.includes(painting.id)})
     return favs
   }
+  // console.log(currentUser.id)
 
   //add paintnig to user's gallery (favorites)
   function onAddFavPainting(painting) {
@@ -90,6 +91,7 @@ function App() {
   function onRemoveFavPainting(painting) {
     const updatedFavorites = favorites.filter(favorite => favorite.painting_id !== painting.id)
     setFavorites(updatedFavorites)
+    console.log(painting)
   }
 
   // adds a new comments
@@ -121,11 +123,14 @@ function App() {
     currentUser["email"] = updatedUserInfo.email
   }
 
+  // sets search value to what user typed in
   function filterSearch(value) {
     setSearchTerm(value)
   }
 
+  // filtered array of paintings matching what user searched for
   const filteredPaintings = paintings.filter(painting => painting.name.toLowerCase().includes(searchTerm.toLowerCase()) || painting.artist.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
 
   return (
     <BrowserRouter>
