@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post "/signup", to: "users#create"
   delete '/deleteaccount', to: 'users#destroy'
+  get '/users/:id/favorites', to: 'favorites#index'
 end

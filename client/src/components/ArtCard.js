@@ -8,8 +8,6 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
     const [ viewingComments, setViewingComments ] = useState(false)
     const [ commentFormShowing, setCommentFormShowing ] = useState(false)
 
-    console.log(isFav)
-
     // attributes of each painting
     const { name, image, department, period, culture, date, medium, dimensions, tags, artist, comments, user_favorite, user_bucketlist, user_seen } = painting
 
