@@ -7,9 +7,6 @@ class UsersController < ApplicationController
     end
     
     def show
-        # user = find_user
-        # render json: user, status: :ok
-        # render json: @current_user, status: :ok
         user = User.find_by(id: session[:user_id])
         if user
             render json: user
@@ -20,6 +17,7 @@ class UsersController < ApplicationController
 
     def create
         user = User.create!(user_params)
+        session[:user_id] = user.id
         render json: user, status: :created
     end
 
@@ -50,10 +48,3 @@ class UsersController < ApplicationController
         params.permit(:name, :username, :email, :password)
     end
 end
-
-# user_params = params.require(:user).permit(:name, :username, :email, :password)
-      
-# # Remove the password and password confirmation keys for empty values
-# user_params.delete(:password) unless user_params[:password].present?
-
-# user_params

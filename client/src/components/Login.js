@@ -45,18 +45,22 @@ function Login({ onLogin }) {
         setFormData({ ...formData, [name]: value })
     }
 
+    function handleClick() {
+        history.push('/signup')
+    }
+
     return (
         <div>
-            <h1>Login</h1>
+            <h1>login</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <label>Username
+                <label>username
                     <input 
                         type='text' 
                         name='username'
                         value={username}
                         onChange={handleChange}/>
                 </label>
-                <label>Password
+                <label>password
                     <input 
                         type='password' 
                         name='password'
@@ -66,6 +70,9 @@ function Login({ onLogin }) {
                 <button type='submit'>login</button>
             </form>
             {errors ? <h2>{errors}</h2> : null}
+
+            <h3>don't have an account?</h3>
+            <button onClick={handleClick}>signup</button>
         </div>
     )
 }

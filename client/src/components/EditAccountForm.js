@@ -49,7 +49,7 @@ function EditAccountForm({ user, onEditAccountInfo, wrapViewingEditFormSetterFun
 
                 <label> email: 
                     <input 
-                        type='text' 
+                        type='email' 
                         name='email'
                         value={formData.email}
                         onChange={handleChange}/>
