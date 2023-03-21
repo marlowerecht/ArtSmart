@@ -8,6 +8,7 @@ import MyGallery from './components/MyGallery.js'
 import BucketList from "./components/BucketList.js";
 import SeenArt from "./components/SeenArt.js";
 import DeleteAccount from "./components/DeleteAccount.js";
+import Signup from "./components/Signup.js";
 
 function App() {
   //state
@@ -192,6 +193,9 @@ function App() {
         <Route path='/deleteaccount'>
           <Header />
           <DeleteAccount />
+        </Route>
+        <Route path='/signup'>
+          <Signup onLogin={onLogin}/>
         </Route>
 
       </div>
