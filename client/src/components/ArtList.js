@@ -8,17 +8,18 @@ function ArtList({ user, paintings, favorites, favPaintings, onAddFavPainting, o
             {(paintings && favorites) ? 
             
                 paintings.map(painting => {
+                    console.log(favPaintings.includes(painting))
                     return <ArtCard 
                                 key={painting.id} 
                                 user={user} 
                                 painting={painting} 
+                                favorites={favorites}
                                 favState={favPaintings.includes(painting)} 
                                 onAddFavPainting={onAddFavPainting} 
                                 onRemoveFavPainting={onRemoveFavPainting}
                                 onPublishComment={onPublishComment}
                                 onEditComment={onEditComment}
                                 onDeleteComment={onDeleteComment} />
-
             }) 
 
             : 

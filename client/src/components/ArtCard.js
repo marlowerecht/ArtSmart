@@ -8,10 +8,12 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
     const [ viewingComments, setViewingComments ] = useState(false)
     const [ commentFormShowing, setCommentFormShowing ] = useState(false)
 
+    console.log(isFav)
+
     // attributes of each painting
     const { name, image, department, period, culture, date, medium, dimensions, tags, artist, comments, user_favorite, user_bucketlist, user_seen } = painting
 
-    // renders comments depending on state
+    // displays comments depending on state
     const renderedComments = comments.map(comment => {
         return <Comment 
                     key={comment.id} 
@@ -28,25 +30,37 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
             painting_id: painting.id
         }
 
-        fetch('/favorites', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(addedPainting)
-        })
-        .then(res => res.json())
-        .then(() => onAddFavPainting(painting))
-        .then(setIsFav(true))
+        if(favorites.includes(addedPainting)) {
+            alert('cannot add it twice!')
+        } else {
+            fetch('/favorites', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(addedPainting)
+            })
+            .then(res => res.json())
+            .then(() => onAddFavPainting(painting))
+            .then(setIsFav(true))
+        }
     }
 
     //not working bc can't read 'favorites'
     function handleRemoveFavPainting() {
-        //filters favorites and grabs only those that belong to this painting
-        const favoritesOfThisPainting = favorites.filter(favorite => favorite.painting_id === painting.id)
-        //filters that array and finds the favorite instance belonging to current user
-        const favoriteOfThisPaintingAndUser = favoritesOfThisPainting.filter(favorite => favorite.user_id === user.id)
-        const favorite_id = favoriteOfThisPaintingAndUser.id
+        // //filters favorites and grabs only those that belong to this painting
+        // const favoritesOfThisPainting = favorites.filter(favorite => favorite.painting_id === painting.id)
+        // //filters that array and finds the favorite instance belonging to current user
+        // const favoriteOfThisPaintingAndUser = favoritesOfThisPainting.filter(favorite => favorite.user_id === user.id)
+        // const favorite_id = favoriteOfThisPaintingAndUser.id
+
+        // {favorites ? favorites.filter(favorite => favorite.painting_id === painting.id).filter(favorite => favorite.user_id === user.id).id : null}
+
+        // const id = favorites.filter(favorite => favorite.painting_id === painting.id && favorite.user_id === user.id).id
+
+        const favorite_id = favorites.filter(favorite => favorite.painting_id === painting.id && favorite.user_id === user.id).id
+
+        console.log(favorite_id)
 
         fetch(`/favorites/${favorite_id}`, {
             method: 'DELETE'
@@ -71,7 +85,7 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
         setCommentFormShowing(true)
     }
 
-    // sends setter function to CommentForm so form disappears when they submit
+    // sends setter function to CommentForm so form disappears when user submits
     function wrapCommentFormSetterFunction(value) {
         setCommentFormShowing(value)
     }
@@ -81,8 +95,9 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
             <h3>{name}</h3>
             <img src={image}/>
             
-            <label>i've seen this one!</label>
+            <label>i've seen this one!
                 <input type='checkbox' name='seenArt' value={user_seen}/>
+            </label>
             
             {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting()}>add to gallery</button>}
             

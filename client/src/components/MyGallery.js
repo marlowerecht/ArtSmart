@@ -1,7 +1,7 @@
 import ArtList from "./ArtList";
 
 function MyGallery({ user, favPaintings, favorites, galleryPaintings, onAddFavPainting, onRemoveFavPainting, allUsers, onEditComment, onDeleteComment }) {
-
+    
     return(
         <div>
             <h1>My Gallery</h1>

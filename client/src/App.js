@@ -123,24 +123,9 @@ function App() {
 
   function filterSearch(value) {
     setSearchTerm(value)
-    const filteredPaintings = paintings.filter(painting => {
-      return painting.name.toLowerCase().includes(searchTerm.toLowerCase()) || painting.artist.name.toLowerCase().includes(searchTerm.toLowerCase())
-    })
-    console.log(filteredPaintings)
-    // paintings.filter(painting => {
-    //   if(searchTerm === '') {
-    //     return painting
-    //   } else if(painting.name.toLowerCase()).includes(searchTerm.toLowerCase()) || painting.artist.name.toLowerCase().includes(searchTerm.toLowerCase()) {
-    //     return painting
-    //   }
-    //   }
-    // )
-    if(searchTerm === '') {
-      setPaintings(paintings)
-    } else {
-      setPaintings(filteredPaintings)
-    }
   }
+
+  const filteredPaintings = paintings.filter(painting => painting.name.toLowerCase().includes(searchTerm.toLowerCase()) || painting.artist.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
   return (
     <BrowserRouter>
@@ -153,7 +138,7 @@ function App() {
             <Header />
             <Homepage 
               user={currentUser} 
-              paintings={paintings} 
+              paintings={filteredPaintings} 
               favorites={favorites} 
               favPaintings={findUserFavs()} 
               onAddFavPainting={onAddFavPainting} 
