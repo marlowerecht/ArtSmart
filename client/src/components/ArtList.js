@@ -28,5 +28,3 @@ function ArtList({ user, paintings, favorites, favPaintings, onAddFavPainting, o
 }
 
 export default ArtList;
-
-// favorites={favorites} favState={isFav(painting)}

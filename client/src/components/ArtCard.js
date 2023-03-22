@@ -4,12 +4,14 @@ import AddCommentForm from './AddCommentForm.js';
 
 function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting, onPublishComment, onEditComment, onDeleteComment }) {
 
+    // console.log(painting)
+
     const [ isFav, setIsFav ] = useState(favState)
     const [ viewingComments, setViewingComments ] = useState(false)
     const [ commentFormShowing, setCommentFormShowing ] = useState(false)
 
     // attributes of each painting
-    const { name, image, department, period, culture, date, medium, dimensions, tags, artist, comments, user_favorite, user_bucketlist, user_seen } = painting
+    const { name, image, department, period, culture, date, medium, dimensions, tags, artist, comments, user_seen } = painting
 
     // displays comments depending on state
     const renderedComments = comments.map(comment => {
@@ -95,10 +97,10 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
             <p>{dimensions}</p>
             <p>{tags}</p>
             <p>{artist.name}</p>
+
             {viewingComments ? <button onClick={handleHideComments}>hide comments</button> : <button onClick={handleShowComments}>view comments</button>}
             {commentFormShowing ? <AddCommentForm painting={painting} user={user} commentSetterFunction={wrapCommentFormSetterFunction} onPublishComment={onPublishComment}/> : <button onClick={handleShowCommentForm}>write comment</button>}
             {viewingComments ? renderedComments : null}
-
         </div>
     )
 }

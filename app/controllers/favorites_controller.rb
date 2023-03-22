@@ -1,8 +1,8 @@
 class FavoritesController < ApplicationController
     def index
-        favorites = Favorite.all
-        my_favorites = favorites.filter{|favorite| favorite.user_id == session[:user_id]}
-        render json: my_favorites, status: :ok
+
+        favorites = Favorite.all.filter{|favorite| favorite.user_id === session[:user_id]}
+        render json: favorites, include: ['painting', 'painting.comments', 'painting.artist_id', 'user'], status: :ok
     end
 
     def show

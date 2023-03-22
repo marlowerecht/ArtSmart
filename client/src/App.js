@@ -38,7 +38,7 @@ function App() {
     })
   },[currentUser])
 
-  // fetches all favorites
+  // fetches all favorites of current user
   useEffect(() => {
     fetch(`/favorites`)
     .then(res => {
@@ -47,6 +47,8 @@ function App() {
       }
     })
   },[currentUser])
+
+  // console.log(favorites)
 
   // fetches all comments
   useEffect(() => {
@@ -70,17 +72,14 @@ function App() {
 
   //MY GALLERY PAINTINGS
   // returns array of paintings that the current user has favorited
-  function findUserFavs() {
-    // make array of favorites that belong to current user
-    const favoritesAndUserIDs = favorites.filter(favorite => favorite.user_id === currentUser.id)
+  function favoritePaintings() {
     // make array of the IDs of the paintings that are favorited by the current user
-    const favoritesAndPaintingsIDs = favoritesAndUserIDs.map(favorite => favorite.painting_id)
+    const favoritesAndPaintingsIDs = favorites.map(favorite => favorite.painting_id)
     // filters through all paintings to see if any of the paintings have ID of favorited painting ID
     const favs = paintings.filter(painting => {
       return favoritesAndPaintingsIDs.includes(painting.id)})
     return favs
   }
-  // console.log(currentUser.id)
 
   //add paintnig to user's gallery (favorites)
   function onAddFavPainting(painting) {
@@ -91,7 +90,6 @@ function App() {
   function onRemoveFavPainting(painting) {
     const updatedFavorites = favorites.filter(favorite => favorite.painting_id !== painting.id)
     setFavorites(updatedFavorites)
-    console.log(painting)
   }
 
   // adds a new comments
@@ -145,7 +143,7 @@ function App() {
               user={currentUser} 
               paintings={filteredPaintings} 
               favorites={favorites} 
-              favPaintings={findUserFavs()} 
+              favPaintings={favoritePaintings()} 
               onAddFavPainting={onAddFavPainting} 
               onRemoveFavPainting={onRemoveFavPainting}
               onPublishComment={onPublishComment}
@@ -159,8 +157,8 @@ function App() {
             <MyGallery 
               favorites={favorites} 
               user={currentUser} 
-              galleryPaintings={findUserFavs()} 
-              favPaintings={findUserFavs()} 
+              paintings={favoritePaintings()} // this is the actual painting instances, not favorite instances (diff models)
+              favPaintings={favoritePaintings()} // used to check state of painting in ArtList and ArtCard
               onAddFavPainting={onAddFavPainting} 
               onRemoveFavPainting={onRemoveFavPainting}
               onPublishComment={onPublishComment}

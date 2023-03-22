@@ -1,16 +1,16 @@
 import ArtList from "./ArtList";
 
-function MyGallery({ user, favPaintings, favorites, galleryPaintings, onAddFavPainting, onRemoveFavPainting, allUsers, onEditComment, onDeleteComment }) {
-    
+function MyGallery({ user, favPaintings, favorites, paintings, onAddFavPainting, onRemoveFavPainting, allUsers, onEditComment, onDeleteComment }) {
+
     return(
         <div>
             <h1>My Gallery</h1>
-            {(galleryPaintings && favorites) ?
+            {(paintings && favorites) ?
                 <ArtList   
                     user={user} 
-                    paintings={galleryPaintings} 
+                    paintings={paintings} 
                     favorites={favorites} 
-                    favPaintings={favPaintings} 
+                    favPaintings={paintings} 
                     onAddFavPainting={onAddFavPainting} 
                     onRemoveFavPainting={onRemoveFavPainting}
                     allUsers={allUsers}

@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
     #returns all comments
     def index
         comments = Comment.all 
-        render json: comments, status: :ok
+        render json: comments, include: [:user], status: :ok
     end
 
     #creates new comment
