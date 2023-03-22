@@ -1,8 +1,13 @@
 User.destroy_all
+User.reset_pk_sequence
 Painting.destroy_all
+Painting.reset_pk_sequence
 Artist.destroy_all
+Artist.reset_pk_sequence
 Comment.destroy_all
+Comment.reset_pk_sequence
 Favorite.destroy_all
+Favorite.reset_pk_sequence
 
 puts "here we go..."
 
@@ -29,11 +34,11 @@ puts "done seeding artists!"
 
 puts "seeding paintings..."
 
-mona_lisa = Painting.create!(name: "Mona Lisa", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/540px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg", department: "", period: "", culture: "", date: "c. 1503-1506", medium: "oil on poplar panel", dimensions: "77 cm x 53 cm (30 in x 21 in)", tags: [], user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: Artist.first.id)
+mona_lisa = Painting.create!(name: "Mona Lisa", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/540px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg", period: "", date: "c. 1503-1506", medium: "oil on poplar panel", dimensions: "77 cm x 53 cm (30 in x 21 in)", user_seen: false, artist_id: Artist.first.id)
 
-girl_with_a_pearl_earring = Painting.create!(name: "Girl with a Pearl Earring", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/540px-1665_Girl_with_a_Pearl_Earring.jpg", department: "", period: "", culture: "", date: "c. 1665", medium: "oil on canvas", dimensions: "44.5 cm x 39 cm (17.5 in x 15 in)", tags: [], user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: Artist.second.id)
+girl_with_a_pearl_earring = Painting.create!(name: "Girl with a Pearl Earring", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/540px-1665_Girl_with_a_Pearl_Earring.jpg", period: "", date: "c. 1665", medium: "oil on canvas", dimensions: "44.5 cm x 39 cm (17.5 in x 15 in)", user_seen: false, artist_id: Artist.second.id)
 
-starry_night = Painting.create!(name: "The Starry Night", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/700px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg", department: "", period: "", culture: "", date: "c. 1889", medium: "oil on canvas", dimensions: "73.7 cm x 92.1 cm (29.01 in x 36.26 in)", tags: "", user_favorite: false, user_seen: false, user_bucketlist: false, artist_id: Artist.third.id)
+starry_night = Painting.create!(name: "The Starry Night", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/700px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg", period: "", date: "c. 1889", medium: "oil on canvas", dimensions: "73.7 cm x 92.1 cm (29.01 in x 36.26 in)", user_seen: false, artist_id: Artist.third.id)
 
 puts "done seeding paintings!"
 

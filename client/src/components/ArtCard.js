@@ -11,7 +11,7 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
     const [ commentFormShowing, setCommentFormShowing ] = useState(false)
 
     // attributes of each painting
-    const { name, image, department, period, culture, date, medium, dimensions, tags, artist, comments, user_seen } = painting
+    const { name, image, period, date, medium, dimensions, artist, comments, user_seen } = painting
 
     // displays comments depending on state
     const renderedComments = comments.map(comment => {
@@ -89,13 +89,10 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
             
             {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting}>add to gallery</button>}
             
-            <p>{department}</p>
             <p>{period}</p>
-            <p>{culture}</p>
             <p>{date}</p>
             <p>{medium}</p>
             <p>{dimensions}</p>
-            <p>{tags}</p>
             <p>{artist.name}</p>
 
             {viewingComments ? <button onClick={handleHideComments}>hide comments</button> : <button onClick={handleShowComments}>view comments</button>}
