@@ -8,7 +8,6 @@ function ArtList({ user, paintings, favorites, favPaintings, onAddFavPainting, o
             {(paintings && favorites) ? 
             
                 paintings.map(painting => {
-                    console.log(favPaintings.includes(painting))
                     return <ArtCard 
                                 key={painting.id} 
                                 user={user} 
@@ -29,5 +28,3 @@ function ArtList({ user, paintings, favorites, favPaintings, onAddFavPainting, o
 }
 
 export default ArtList;
-
-// favorites={favorites} favState={isFav(painting)}
