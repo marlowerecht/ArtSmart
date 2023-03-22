@@ -40,7 +40,7 @@ function App() {
 
   // fetches all favorites of current user
   useEffect(() => {
-    fetch('/favorites')
+    fetch(`/favorites`)
     .then(res => {
       if(res.ok) {
         res.json().then((favorites) => setFavorites(favorites))
