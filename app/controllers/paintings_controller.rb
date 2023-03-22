@@ -20,16 +20,11 @@ class PaintingsController < ApplicationController
         params.permit(
             # :name,
             # :image,
-            # :department,
             # :period,
-            # :culture,
             # :date,
             # :medium,
             # :dimensions,
-            # :tags,
-            :user_favorite,
             :user_seen,
-            :user_bucketlist,
             # :artist_id
         )
     end
