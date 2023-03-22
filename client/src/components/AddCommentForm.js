@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 function AddCommentForm({ painting, user, commentSetterFunction, onPublishComment }) {
+    const history = useHistory()
+
     const current = new Date();
     const today = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
 
@@ -28,9 +31,12 @@ function AddCommentForm({ painting, user, commentSetterFunction, onPublishCommen
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then(onPublishComment(formData))
-        .then(setFormData(initialFormData))
-        .then(commentSetterFunction(false))
+        .then(() => {
+            onPublishComment(formData)
+            setFormData(initialFormData)
+            commentSetterFunction(false)
+            history.push("/homepage")
+        })
     }
 
     // hides form is user decides not to write comment

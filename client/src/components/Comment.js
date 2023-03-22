@@ -6,8 +6,6 @@ function Comment({ comment, currentUser, onEditComment, onDeleteComment }) {
 
     const { content, user } = comment
 
-    console.log(comment)
-
     function handleEditComment() {
         setViewingEditForm(true)
     }

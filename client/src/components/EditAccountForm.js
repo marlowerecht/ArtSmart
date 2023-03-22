@@ -8,6 +8,7 @@ function EditAccountForm({ user, onEditAccountInfo, wrapViewingEditFormSetterFun
     }
 
     const [ formData, setFormData ] = useState(initialFormData)
+    const [ errors, setErrors ] = useState([])
 
     function handleChange(e) {
         setFormData({...formData, [e.target.name]: e.target.value})
@@ -23,10 +24,18 @@ function EditAccountForm({ user, onEditAccountInfo, wrapViewingEditFormSetterFun
             },
             body: JSON.stringify(formData)
         })
-        .then(res => res.json())
-        .then(onEditAccountInfo(formData))
-        .then(wrapViewingEditFormSetterFunction(false))
-    }
+        .then((res) => {
+            if(res.ok) {
+                res.json().then(() => {
+                    onEditAccountInfo(formData)
+                    wrapViewingEditFormSetterFunction(false)
+                })
+            }
+            else {
+                res.json().then((errors) => setErrors(errors.errors))
+            }
+            })
+        }
 
     return (
         <div>
@@ -57,6 +66,7 @@ function EditAccountForm({ user, onEditAccountInfo, wrapViewingEditFormSetterFun
 
                 <button type='submit'>save changes</button>
             </form>
+            {errors ? <h2>{errors.map(error => <h3>{error}</h3>)}</h2> : null}
         </div>
     )
 }
