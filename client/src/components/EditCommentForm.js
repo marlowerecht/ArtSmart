@@ -1,6 +1,10 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useHistory } from "react-router-dom";
+
 
 function EditCommentForm({ currentContent, comment, onEditComment, viewingEditFormSetterFunction }) {
+    const history = useHistory()
+
     const initialFormData = {
         content: currentContent
     }
@@ -23,8 +27,11 @@ function EditCommentForm({ currentContent, comment, onEditComment, viewingEditFo
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then(onEditComment(formData))
-        .then(viewingEditFormSetterFunction(false))
+        .then(() => {
+            onEditComment(formData)
+            viewingEditFormSetterFunction(false)
+            history.push("/homepage")
+        })
     }
 
     return (

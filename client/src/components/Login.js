@@ -34,8 +34,7 @@ function Login({ onLogin }) {
                 })
             }
             else {
-                // res.json().then(json => setErrors(Object.entries(json.errors)))
-                res.json().then((poo) => console.log(poo))
+                res.json().then((errors) => setErrors(errors.error))
             }
         })
     }

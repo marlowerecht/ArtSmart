@@ -40,7 +40,7 @@ function Signup({ onLogin }) {
                     history.push('/homepage')
                 })
             } else {
-                res.json().then((err) => setErrors(err.errors))
+                res.json().then((errors) => setErrors(errors.errors))
             }
         })
     }
@@ -84,7 +84,7 @@ function Signup({ onLogin }) {
                 </label>
                 <button type='submit'>signup</button>
             </form>
-            {errors ? <h2>{errors}</h2> : null}
+            {errors ? <h2>{errors.map(error => <h3>{error}</h3>)}</h2> : null}
         </div>
     )
 }
