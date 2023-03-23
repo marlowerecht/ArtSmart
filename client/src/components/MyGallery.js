@@ -1,6 +1,6 @@
 import ArtList from "./ArtList";
 
-function MyGallery({ user, favPaintings, favorites, paintings, onAddFavPainting, onRemoveFavPainting, allUsers, onEditComment, onDeleteComment }) {
+function MyGallery({ user, favPaintings, favorites, paintings, onAddFavPainting, onRemoveFavPainting, allUsers, onEditComment, onDeleteComment, onPublishComment }) {
 
     return(
         <div>
@@ -16,6 +16,7 @@ function MyGallery({ user, favPaintings, favorites, paintings, onAddFavPainting,
                     allUsers={allUsers}
                     onEditComment={onEditComment}
                     onDeleteComment={onDeleteComment}
+                    onPublishComment={onPublishComment}
                 /> : <h3>Loading gallery...</h3>}
         </div>
     )

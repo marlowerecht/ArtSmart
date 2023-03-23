@@ -5,8 +5,6 @@ import Homepage from './components/Homepage.js';
 import Profile from './components/Profile.js';
 import Header from './components/Header.js';
 import MyGallery from './components/MyGallery.js'
-import BucketList from "./components/BucketList.js";
-import SeenArt from "./components/SeenArt.js";
 import DeleteAccount from "./components/DeleteAccount.js";
 import Signup from "./components/Signup.js";
 
@@ -132,40 +130,52 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/login">
-            <Login onLogin={onLogin} />
-          </Route>
-          <Route path="/homepage">
-            <Header />
-            <Homepage 
-              user={currentUser} 
-              paintings={filteredPaintings} 
-              favorites={favorites} 
-              favPaintings={favoritePaintings()} 
-              onAddFavPainting={onAddFavPainting} 
-              onRemoveFavPainting={onRemoveFavPainting}
-              onPublishComment={onPublishComment}
-              onEditComment={onEditComment}
-              onDeleteComment={onDeleteComment}
-              searchTerm={searchTerm}
-              filterSearch={filterSearch}/>
-          </Route>
           <Route path="/mygallery">
-            <Header />
-            <MyGallery 
-              favorites={favorites} 
-              user={currentUser} 
-              paintings={favoritePaintings()} // this is the actual painting instances, not favorite instances (diff models)
-              favPaintings={favoritePaintings()} // used to check state of painting in ArtList and ArtCard
-              onAddFavPainting={onAddFavPainting} 
-              onRemoveFavPainting={onRemoveFavPainting}
-              onPublishComment={onPublishComment}
-              onEditComment={onEditComment}
-              onDeleteComment={onDeleteComment}/>
+            {!currentUser ? <Login onLogin={onLogin}/> :
+              <>
+                <Header />
+                <MyGallery 
+                  favorites={favorites} 
+                  user={currentUser} 
+                  paintings={favoritePaintings()} // this is the actual painting instances, not favorite instances (diff models)
+                  favPaintings={favoritePaintings()} // used to check state of painting in ArtList and ArtCard
+                  onAddFavPainting={onAddFavPainting} 
+                  onRemoveFavPainting={onRemoveFavPainting}
+                  onPublishComment={onPublishComment}
+                  onEditComment={onEditComment}
+                  onDeleteComment={onDeleteComment}/>
+              </>
+            }
           </Route>
           <Route path="/profile">
-            <Header />
-            <Profile onLogout={onLogout} user={currentUser} onEditAccountInfo={onEditAccountInfo}/>
+            {!currentUser ? <Login onLogin={onLogin}/> :
+              <>
+                <Header />
+                <Profile 
+                  onLogout={onLogout}
+                  user={currentUser}
+                  onEditAccountInfo={onEditAccountInfo}/>
+              </>
+            }
+          </Route>
+          <Route path="/">
+            {!currentUser ? <Login onLogin={onLogin}/> :
+              <>
+                <Header />
+                <Homepage 
+                  user={currentUser} 
+                  paintings={filteredPaintings} 
+                  favorites={favorites} 
+                  favPaintings={favoritePaintings()} 
+                  onAddFavPainting={onAddFavPainting} 
+                  onRemoveFavPainting={onRemoveFavPainting}
+                  onPublishComment={onPublishComment}
+                  onEditComment={onEditComment}
+                  onDeleteComment={onDeleteComment}
+                  searchTerm={searchTerm}
+                  filterSearch={filterSearch}/>
+              </>
+            }
           </Route>
         </Switch>
         <Route path='/deleteaccount'>
@@ -175,6 +185,9 @@ function App() {
         <Route path='/signup'>
           <Signup onLogin={onLogin}/>
         </Route>
+        {/* <Route path='/login'>
+          <Login onLogin={onLogin}/>
+        </Route> */}
 
       </div>
     </BrowserRouter>

@@ -10,8 +10,6 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
 
     const [ viewingEditForm, setViewingEditForm ] = useState(false)
 
-    console.log(user)
-
     //attributes of current user
     const { name, username, email } = user
 

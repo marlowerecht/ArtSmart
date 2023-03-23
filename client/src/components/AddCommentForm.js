@@ -35,7 +35,7 @@ function AddCommentForm({ painting, user, commentSetterFunction, onPublishCommen
             onPublishComment(formData)
             setFormData(initialFormData)
             commentSetterFunction(false)
-            history.push("/homepage")
+            // history.push("/homepage")
         })
     }
 
