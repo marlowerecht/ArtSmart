@@ -79,8 +79,8 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
     }
 
     return (
-        <div>
-            <h3>{name}</h3>
+        <div className="text-amber-900 px-16 py-6">
+            <h3 className="font-bold">{name}</h3>
             <img src={image}/>
             
             <label>i've seen this one!

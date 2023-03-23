@@ -4,9 +4,8 @@ import ArtList from './ArtList'
 function Homepage({ user, paintings, favorites, favPaintings, onAddFavPainting, onRemoveFavPainting, onPublishComment, onEditComment, onDeleteComment, searchTerm, filterSearch }) {
 
     return (
-        <div className="text-green-600">
-            <h1>homepage</h1>
-            {user ? <h2>hello, {user.name}</h2> : <h2>loading...</h2>}
+        <div className="text-amber-900">
+            {user ? <h2>hello, {user.name.toLowerCase()}</h2> : <h2>loading...</h2>}
             <Search 
                 searchTerm={searchTerm} 
                 filterSearch={filterSearch}/>

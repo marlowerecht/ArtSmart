@@ -4,13 +4,11 @@ function Header() {
     return (
         <header>
             <nav>
-                <h1>
-                    {/* <span className="logo">{"//"}</span> */}
-                    <Link to="/homepage">
-                        Home
-                    </Link>
-                </h1>
+                <h1 className="text-3xl p-4">ArtSmart</h1>
                 <div>
+                    <NavLink exact to="/">
+                        home
+                    </NavLink>
                     <NavLink exact to='/mygallery'>
                         my gallery
                     </NavLink>

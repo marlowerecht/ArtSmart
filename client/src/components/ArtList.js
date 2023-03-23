@@ -4,7 +4,6 @@ function ArtList({ user, paintings, favorites, favPaintings, onAddFavPainting, o
 
     return (
         <div>
-            <h1>ArtList</h1>
             {(paintings && favorites) ? 
             
                 paintings.map(painting => {

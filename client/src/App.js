@@ -131,7 +131,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="bg-red-300">
+      <div className="bg-orange-100 text-amber-900">
         <Switch>
           <Route path="/mygallery">
             {!currentUser ? <Login onLogin={onLogin}/> :
