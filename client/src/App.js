@@ -48,8 +48,6 @@ function App() {
     })
   },[currentUser])
 
-  // console.log(favorites)
-
   // fetches all comments
   useEffect(() => {
     fetch('/comments')
@@ -164,14 +162,6 @@ function App() {
               onPublishComment={onPublishComment}
               onEditComment={onEditComment}
               onDeleteComment={onDeleteComment}/>
-          </Route>
-          <Route path="/bucketlist">
-            <Header />
-            <BucketList paintings={paintings}/>
-          </Route>
-          <Route path="/seenart">
-            <Header />
-            <SeenArt paintings={paintings}/>
           </Route>
           <Route path="/profile">
             <Header />
