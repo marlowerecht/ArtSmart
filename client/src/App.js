@@ -7,6 +7,7 @@ import Header from './components/Header.js';
 import MyGallery from './components/MyGallery.js'
 import DeleteAccount from "./components/DeleteAccount.js";
 import Signup from "./components/Signup.js";
+// import './index.css'
 
 function App() {
   //state
@@ -63,7 +64,7 @@ function App() {
 
   // logs out user
   function onLogout() {
-    setCurrentUser({id: null})
+    setCurrentUser(null)
   }
 
   //MY GALLERY PAINTINGS
@@ -91,6 +92,8 @@ function App() {
   // adds a new comments
   function onPublishComment(newComment) {
     setComments([...comments, newComment])
+    const paintingWithNewComment = paintings.filter(painting => painting.id === newComment.painting_id)
+    paintingWithNewComment[comments] = [...comments, newComment]
   }
 
   // updates comments when an edit is made
@@ -128,7 +131,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="bg-red-300">
         <Switch>
           <Route path="/mygallery">
             {!currentUser ? <Login onLogin={onLogin}/> :
@@ -159,7 +162,13 @@ function App() {
             }
           </Route>
           <Route path="/">
-            {!currentUser ? <Login onLogin={onLogin}/> :
+            {!currentUser ?
+              <>
+                <Route path='/login'>
+                  <Login onLogin={onLogin}/>
+                </Route>
+              </>
+              :
               <>
                 <Header />
                 <Homepage 

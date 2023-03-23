@@ -50,7 +50,7 @@ function Login({ onLogin }) {
 
     return (
         <div>
-            <h1>login</h1>
+            <h1 className="text-3xl font-bold underline">login</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <label>username
                     <input 
