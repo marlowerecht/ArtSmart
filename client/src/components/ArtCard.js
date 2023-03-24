@@ -4,14 +4,13 @@ import AddCommentForm from './AddCommentForm.js';
 
 function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting, onPublishComment, onEditComment, onDeleteComment }) {
 
-    // console.log(painting)
+    // attributes of each painting
+    const { name, image, period, date, medium, dimensions, artist, comments, user_seen } = painting
 
     const [ isFav, setIsFav ] = useState(favState)
     const [ viewingComments, setViewingComments ] = useState(false)
     const [ commentFormShowing, setCommentFormShowing ] = useState(false)
-
-    // attributes of each painting
-    const { name, image, period, date, medium, dimensions, artist, comments, user_seen } = painting
+    const [ paintingComments, setPaintingComments ] = useState(comments)
 
     // displays comments depending on state
     const renderedComments = comments.map(comment => {
@@ -78,26 +77,45 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
         setCommentFormShowing(value)
     }
 
-    return (
-        <div className="text-amber-900 px-16 py-6">
-            <h3 className="font-bold">{name}</h3>
-            <img src={image}/>
-            
-            <label>i've seen this one!
-                <input type='checkbox' name='seenArt' value={user_seen}/>
-            </label>
-            
-            {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting}>add to gallery</button>}
-            
-            <p>{period}</p>
-            <p>{date}</p>
-            <p>{medium}</p>
-            <p>{dimensions}</p>
-            <p>{artist.name}</p>
+    function wrapCommentSetterFunction(newComment) {
+        setPaintingComments([...paintingComments, newComment])
+    }
 
-            {viewingComments ? <button onClick={handleHideComments}>hide comments</button> : <button onClick={handleShowComments}>view comments</button>}
-            {commentFormShowing ? <AddCommentForm painting={painting} user={user} commentSetterFunction={wrapCommentFormSetterFunction} onPublishComment={onPublishComment}/> : <button onClick={handleShowCommentForm}>write comment</button>}
-            {viewingComments ? renderedComments : null}
+    console.log(paintingComments)
+
+    return (
+        <div className="painting-card">
+            <div className="m-4 block">
+                <img className="painting-img" src={image}/>
+            </div>
+            
+            <div className="m-4">
+                <div className="m-4">
+                    <h3 className="font-bold">{name}</h3>
+                    <p>{artist.name}</p>
+                    <p>{period}</p>
+                    <p>{date}</p>
+                    <p>{medium}</p>
+                    <p>{dimensions}</p>
+                    <div className="m-4 block">
+                        {/* <label>i've seen this one!
+                            <input type='checkbox' name='seenArt' value={user_seen}/>
+                        </label> */}
+                        {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting}>add to gallery</button>} 
+                    </div>
+                    <div className="block"> 
+                        {viewingComments ? <button onClick={handleHideComments} className="m-2">hide comments</button> : <button onClick={handleShowComments} className="m-2">view comments</button>}
+                        {commentFormShowing ? <AddCommentForm 
+                                                painting={painting} 
+                                                user={user} 
+                                                commentFormSetterFunction={wrapCommentFormSetterFunction}
+                                                onPublishComment={onPublishComment} 
+                                                wrapCommentSetterFunction={wrapCommentSetterFunction}/> 
+                                            : <button onClick={handleShowCommentForm} className="m-2">write comment</button>}
+                        {viewingComments ? renderedComments : null}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

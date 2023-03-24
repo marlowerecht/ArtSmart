@@ -92,8 +92,8 @@ function App() {
   // adds a new comments
   function onPublishComment(newComment) {
     setComments([...comments, newComment])
-    const paintingWithNewComment = paintings.filter(painting => painting.id === newComment.painting_id)
-    paintingWithNewComment[comments] = [...comments, newComment]
+    // const paintingWithNewComment = paintings.filter(painting => painting.id === newComment.painting_id)
+    // paintingWithNewComment[comments] = [...comments, newComment]
   }
 
   // updates comments when an edit is made
@@ -131,7 +131,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="bg-orange-100 text-amber-900">
+      <div className="body">
         <Switch>
           <Route path="/mygallery">
             {!currentUser ? <Login onLogin={onLogin}/> :
