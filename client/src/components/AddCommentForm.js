@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-function AddCommentForm({ painting, user, commentSetterFunction, onPublishComment }) {
+function AddCommentForm({ painting, user, commentFormSetterFunction, onPublishComment, wrapCommentSetterFunction }) {
     const history = useHistory()
 
     const current = new Date();
@@ -34,14 +34,14 @@ function AddCommentForm({ painting, user, commentSetterFunction, onPublishCommen
         .then(() => {
             onPublishComment(formData)
             setFormData(initialFormData)
-            commentSetterFunction(false)
-            // history.push("/homepage")
+            commentFormSetterFunction(false)
+            wrapCommentSetterFunction(formData)
         })
     }
 
     // hides form is user decides not to write comment
     function handleNevermind() {
-        commentSetterFunction(false)
+        commentFormSetterFunction(false)
     }
 
     return (
@@ -54,9 +54,9 @@ function AddCommentForm({ painting, user, commentSetterFunction, onPublishCommen
                         value={formData.content}
                         onChange={handleChange}/>
                 </label>
-                <button type='submit'>publish comment</button>
+                <button type='submit' className="m-2 text-sm">publish comment</button>
             </form>
-            <button onClick={handleNevermind}>nevermind</button>
+            <button onClick={handleNevermind} className="m-2 text-sm">nevermind</button>
         </div>
     )
 }

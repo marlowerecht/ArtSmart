@@ -9,16 +9,18 @@ function Homepage({ user, paintings, favorites, favPaintings, onAddFavPainting, 
             <Search 
                 searchTerm={searchTerm} 
                 filterSearch={filterSearch}/>
-            <ArtList 
-                user={user} 
-                paintings={paintings} 
-                favorites={favorites} 
-                favPaintings={favPaintings} 
-                onAddFavPainting={onAddFavPainting} 
-                onRemoveFavPainting={onRemoveFavPainting}
-                onPublishComment={onPublishComment}
-                onEditComment={onEditComment}
-                onDeleteComment={onDeleteComment}/>
+            <div>
+                <ArtList 
+                    user={user} 
+                    paintings={paintings} 
+                    favorites={favorites} 
+                    favPaintings={favPaintings} 
+                    onAddFavPainting={onAddFavPainting} 
+                    onRemoveFavPainting={onRemoveFavPainting}
+                    onPublishComment={onPublishComment}
+                    onEditComment={onEditComment}
+                    onDeleteComment={onDeleteComment}/>
+            </div>
         </div>
     )
 }

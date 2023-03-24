@@ -44,7 +44,7 @@ function EditCommentForm({ currentContent, comment, onEditComment, viewingEditFo
                         value={formData.content}
                         onChange={handleChange}/>
                 </label>
-                <button type='submit'>publish</button>
+                <button type='submit' className="m-2 text-sm">publish</button>
             </form>
         </div>
     )
