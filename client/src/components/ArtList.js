@@ -3,7 +3,7 @@ import ArtCard from './ArtCard.js';
 function ArtList({ user, paintings, favorites, favPaintings, onAddFavPainting, onRemoveFavPainting, onPublishComment, onEditComment, onDeleteComment }) {
 
     return (
-        <div className="md:flex justify-around">
+        <div className="md:flex grid-cols-2 justify-around">
             {(paintings && favorites) ? 
                 paintings.map(painting => {
                     return <ArtCard 
