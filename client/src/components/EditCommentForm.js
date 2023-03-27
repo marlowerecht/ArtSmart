@@ -30,7 +30,7 @@ function EditCommentForm({ currentContent, comment, onEditComment, viewingEditFo
         .then(() => {
             onEditComment(formData)
             viewingEditFormSetterFunction(false)
-            history.push("/homepage")
+            history.push("/")
         })
     }
 
@@ -44,7 +44,7 @@ function EditCommentForm({ currentContent, comment, onEditComment, viewingEditFo
                         value={formData.content}
                         onChange={handleChange}/>
                 </label>
-                <button type='submit' className="m-2 text-sm">publish</button>
+                <button type='submit' className="m-2 text-sm comment-btn">publish</button>
             </form>
         </div>
     )

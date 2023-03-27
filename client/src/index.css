@@ -8,12 +8,32 @@
     @apply bg-orange-100 text-amber-900 font-body
 }
 
+.app-name {
+    @apply text-2xl md:text-5xl flex md:justify-center py-2 md:py-14 place-content-center
+}
+
+.hello-user {
+    @apply hidden md:block absolute left-0 top-0 mx-2 my-2 md:mx-6 md:my-16
+}
+
 .nav-links{
-    @apply flex justify-end bg-orange-100 text-amber-900 font-body
+    @apply md:block absolute top-0 right-0 bg-orange-100 text-amber-900 font-body md:divide-y-2 divide-amber-900 divide-double mr-2
+}
+
+.nav-link-btn {
+    @apply m-0 p-0 text-right md:m-2 md:p-2 hover:font-bold 
+}
+
+.burger-icon {
+    @apply md:hidden
 }
 
 .painting-card{
-    @apply text-amber-900 px-16 py-6 m-6 flex-row bg-orange-200 rounded shadow-md sm:w-full md:w-1/2 lg:w-1/3
+    @apply text-amber-900 px-5 py-5 m-5 flex-row bg-orange-200 rounded shadow-md sm:w-full md:w-1/3 relative
+}
+
+.gallery-btn {
+    @apply rounded-md p-2 absolute bottom-0 left-0 m-2 bg-blue-100 bg-opacity-60 text-sm hover:bg-blue-200 hover:shadow-md transition ease-out duration-500
 }
 
 .painting-img{
@@ -21,9 +41,17 @@
 }
 
 .comment-card{
-    @apply p-2 border-b-2 border-orange-100
+    @apply p-2
 }
 
 .comment-username{
-    @apply font-light text-sm flex justify-end
+    @apply font-light text-sm flex justify-end border-b-2 border-orange-100
+}
+
+.comment-btn {
+    @apply rounded-md p-2 bg-blue-100 bg-opacity-20 text-xs hover:bg-blue-200 hover:shadow-md transition ease-out duration-500
+}
+
+.profile-btn {
+    @apply rounded-md p-2 bg-blue-100 bg-opacity-20 text-sm m-2 hover:bg-blue-200 hover:shadow-md transition ease-out duration-500
 }

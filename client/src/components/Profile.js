@@ -43,9 +43,7 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
 
     return (
         <div>
-            <h1>profile</h1>
-
-            <h3>account information</h3>
+            <h3 className="text-xl">account information</h3>
             <p>name: {name}</p>
             <p>username: {username}</p>
             <p>email: {email}</p>
@@ -53,11 +51,11 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
             {viewingEditForm ? <EditAccountForm 
                                     user={user} 
                                     wrapViewingEditFormSetterFunction={wrapViewingEditFormSetterFunction} onEditAccountInfo={onEditAccountInfo}
-                                /> : <button onClick={handleEditInformation}>edit information</button>}
+                                /> : <button onClick={handleEditInformation} className="profile-btn">edit information</button>}
             
-            <button onClick={handleLogoutClick}>logout</button>
+            <button onClick={handleLogoutClick} className="profile-btn">logout</button>
             
-            <button onClick={sendToDeleteAccount}>delete account</button>
+            <button onClick={sendToDeleteAccount} className="profile-btn">delete account</button>
         </div>
     )
 }

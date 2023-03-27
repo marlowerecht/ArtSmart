@@ -54,9 +54,9 @@ function AddCommentForm({ painting, user, commentFormSetterFunction, onPublishCo
                         value={formData.content}
                         onChange={handleChange}/>
                 </label>
-                <button type='submit' className="m-2 text-sm">publish comment</button>
+                <button type='submit' className="m-2 text-sm comment-btn">publish comment</button>
             </form>
-            <button onClick={handleNevermind} className="m-2 text-sm">nevermind</button>
+            <button onClick={handleNevermind} className="m-2 text-sm comment-btn">nevermind</button>
         </div>
     )
 }

@@ -26,7 +26,7 @@ function Comment({ comment, currentUser, onEditComment, onDeleteComment }) {
         <div className="comment-card">
             <p>{content}</p>
             <p className="comment-username">{user.username}</p>
-            {(user.id === currentUser.id) ? <button onClick={handleEditComment} className="m-2 text-sm">edit comment</button> : null}
+            {(user.id === currentUser.id) ? <button onClick={handleEditComment} className="m-2 text-sm comment-btn">edit comment</button> : null}
             {viewingEditForm ? <EditCommentForm 
                                     comment={comment} 
                                     currentContent={content}
@@ -34,7 +34,7 @@ function Comment({ comment, currentUser, onEditComment, onDeleteComment }) {
                                     viewingEditFormSetterFunction={viewingEditFormSetterFunction}
                                     onDeleteComment={onDeleteComment} 
                                 /> : null}
-            {(user.id === currentUser.id) ? <button onClick={handleDeleteComment} className="m-2 text-sm">delete comment</button> : null}
+            {(user.id === currentUser.id) ? <button onClick={handleDeleteComment} className="m-2 text-sm comment-btn">delete comment</button> : null}
         </div>
     )
 }

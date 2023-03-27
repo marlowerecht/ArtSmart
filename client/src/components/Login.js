@@ -30,7 +30,7 @@ function Login({ onLogin }) {
                 res.json().then(user => {
                     onLogin(user)
                     setFormData(initialFormValues)
-                    history.push('/homepage')
+                    history.push('/')
                 })
             }
             else {
@@ -66,12 +66,12 @@ function Login({ onLogin }) {
                         value={password}
                         onChange={handleChange}/>
                 </label>
-                <button type='submit'>login</button>
+                <button type='submit' className="profile-btn">login</button>
             </form>
             {errors ? <h2>{errors}</h2> : null}
 
             <h3>don't have an account?</h3>
-            <button onClick={handleClick}>signup</button>
+            <button onClick={handleClick} className="profile-btn">signup</button>
         </div>
     )
 }
