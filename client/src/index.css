@@ -17,7 +17,7 @@
 }
 
 .nav-links{
-    @apply md:block absolute top-0 right-0 bg-orange-100 text-amber-900 font-body md:divide-y-2 divide-amber-900 divide-double mr-2
+    @apply md:block md:absolute top-0 right-0 bg-orange-100 text-amber-900 font-body md:divide-y-2 divide-amber-900 divide-double mr-2
 }
 
 .nav-link-btn {
@@ -25,7 +25,7 @@
 }
 
 .burger-icon {
-    @apply md:hidden
+    @apply flex justify-end md:hidden
 }
 
 .painting-card{
@@ -54,4 +54,16 @@
 
 .profile-btn {
     @apply rounded-md p-2 bg-blue-100 bg-opacity-20 text-sm m-2 hover:bg-blue-200 hover:shadow-md transition ease-out duration-500
+}
+
+.profile-info-div {
+    @apply flex justify-between items-center px-3
+}
+
+.profile-info {
+    @apply rounded m-2 bg-orange-100 p-2 shadow-md
+}
+
+.profile-info-label {
+    @apply font-bold
 }

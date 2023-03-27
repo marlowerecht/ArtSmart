@@ -39,30 +39,42 @@ function EditAccountForm({ user, onEditAccountInfo, wrapViewingEditFormSetterFun
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <label> name: 
-                    <input 
-                        type='text' 
-                        name='name'
-                        value={formData.name}
-                        onChange={handleChange}/>
-                </label>
+            <form onSubmit={handleSubmit} >
+            <div className="text-amber-900 shadow:md rounded m-4 bg-orange-200 w-1/3 p-2 justify-center">
+                <div className="profile-info-div">
+                    <label> name: 
+                        <input 
+                            type='text' 
+                            name='name'
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="focus:outline-none focus:border-pink-300 focus:ring focus:ring-pink-300 profile-info"/>
+                    </label>
+                </div>
 
-                <label> username: 
-                    <input 
-                        type='text' 
-                        name='username'
-                        value={formData.username}
-                        onChange={handleChange}/>
-                </label>
+                <div className="profile-info-div">
+                    <label> username: 
+                        <input 
+                            type='text' 
+                            name='username'
+                            value={formData.username}
+                            onChange={handleChange}
+                            className="focus:outline-none focus:border-pink-300 focus:ring focus:ring-pink-300 profile-info"/>
+                    </label> 
+                </div>
 
-                <label> email: 
-                    <input 
-                        type='email' 
-                        name='email'
-                        value={formData.email}
-                        onChange={handleChange}/>
-                </label>
+                <div className="profile-info-div">
+                    <label> email:
+                        <input 
+                            type='email' 
+                            name='email'
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="focus:outline-none focus:border-pink-300 focus:ring focus:ring-pink-300 profile-info"/>
+                    </label>
+                </div>
+
+                </div>
 
                 <button type='submit' className="profile-btn">save changes</button>
             </form>

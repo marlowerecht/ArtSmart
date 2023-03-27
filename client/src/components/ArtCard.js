@@ -89,12 +89,12 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
             
             <div className="m-4">
                 <div className="m-4">
-                    <h3 className="font-bold">{name}</h3>
-                    <p>{artist.name}</p>
-                    <p>{period}</p>
-                    <p>{date}</p>
-                    <p>{medium}</p>
-                    <p>{dimensions}</p>
+                    <h3 className="font-bold m-2 text-lg">{name}</h3>
+                    <p className="m-2 text-sm">{artist.name}</p>
+                    <p className="m-2 text-sm">{date}</p>
+                    <p className="m-2 text-sm">{period}</p>
+                    <p className="m-2 text-sm">{medium}</p>
+                    <p className="m-2 text-sm">{dimensions}</p>
                     <div className="m-2 flex flex-col items-end justify-end"> 
                         {viewingComments ? <button onClick={handleHideComments} className="my-2 comment-btn">hide comments</button> : <button onClick={handleShowComments} className="my-2 comment-btn">view comments</button>}
                         {commentFormShowing ? <AddCommentForm 
