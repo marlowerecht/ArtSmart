@@ -42,16 +42,27 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
     }
 
     return (
-        <div>
-            <h3 className="text-xl">account information</h3>
-            <p>name: {name}</p>
-            <p>username: {username}</p>
-            <p>email: {email}</p>
-            
-            {viewingEditForm ? <EditAccountForm 
-                                    user={user} 
-                                    wrapViewingEditFormSetterFunction={wrapViewingEditFormSetterFunction} onEditAccountInfo={onEditAccountInfo}
-                                /> : <button onClick={handleEditInformation} className="profile-btn">edit information</button>}
+        <div className="flex-col">
+            <h3 className="m-6 text-lg flex justify-center">a c c o u n t - i n f o</h3>
+            <div className="flex-col flex justify-center">
+                <div className="text-amber-900 shadow:md rounded m-4 bg-orange-200 w-1/3 p-2 justify-center">
+                    <div className="profile-info-div">
+                        <p className="profile-info-label">name:</p><p className="profile-info">{name}</p>
+                    </div>
+                    <div className="profile-info-div">
+                        <p className="profile-info-label">username:</p><p className="profile-info">{username}</p>
+                    </div>
+                    <div className="profile-info-div">
+                        <p className="profile-info-label">email:</p><p className="profile-info">{email}</p>
+                    </div>
+                </div>
+                    <div className="block">
+                        {viewingEditForm ? <EditAccountForm 
+                                                user={user} 
+                                                wrapViewingEditFormSetterFunction={wrapViewingEditFormSetterFunction} onEditAccountInfo={onEditAccountInfo}
+                                            /> : <button onClick={handleEditInformation} className="profile-btn mx-4">edit information</button>}
+                    </div>
+            </div>
             
             <button onClick={handleLogoutClick} className="profile-btn">logout</button>
             
