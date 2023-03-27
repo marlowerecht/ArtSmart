@@ -4,7 +4,7 @@ function Search({ searchTerm, filterSearch }) {
     }
 
     return (
-        <div>
+        <div className="ml-10 mb-10">
             <form>
                 <label>
                     <input 

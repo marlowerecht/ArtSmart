@@ -81,11 +81,9 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
         setPaintingComments([...paintingComments, newComment])
     }
 
-    console.log(paintingComments)
-
     return (
         <div className="painting-card">
-            <div className="m-4 block">
+            <div className="m-4 ">
                 <img className="painting-img" src={image}/>
             </div>
             
@@ -97,22 +95,22 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
                     <p>{date}</p>
                     <p>{medium}</p>
                     <p>{dimensions}</p>
-                    <div className="m-4 block">
-                        {/* <label>i've seen this one!
-                            <input type='checkbox' name='seenArt' value={user_seen}/>
-                        </label> */}
-                        {(isFav) ? <button onClick={handleRemoveFavPainting}>remove from gallery</button> : <button onClick={handleAddFavPainting}>add to gallery</button>} 
-                    </div>
-                    <div className="block"> 
-                        {viewingComments ? <button onClick={handleHideComments} className="m-2">hide comments</button> : <button onClick={handleShowComments} className="m-2">view comments</button>}
+                    <div className="m-2 flex flex-col items-end justify-end"> 
+                        {viewingComments ? <button onClick={handleHideComments} className="my-2 comment-btn">hide comments</button> : <button onClick={handleShowComments} className="my-2 comment-btn">view comments</button>}
                         {commentFormShowing ? <AddCommentForm 
                                                 painting={painting} 
                                                 user={user} 
                                                 commentFormSetterFunction={wrapCommentFormSetterFunction}
                                                 onPublishComment={onPublishComment} 
                                                 wrapCommentSetterFunction={wrapCommentSetterFunction}/> 
-                                            : <button onClick={handleShowCommentForm} className="m-2">write comment</button>}
+                                            : <button onClick={handleShowCommentForm} className="my-2 comment-btn">write comment</button>}
                         {viewingComments ? renderedComments : null}
+                    </div>
+                    <div className="m-4 block">
+                        {/* <label>i've seen this one!
+                            <input type='checkbox' name='seenArt' value={user_seen}/>
+                        </label> */}
+                        {(isFav) ? <button onClick={handleRemoveFavPainting} className="gallery-btn">remove from gallery</button> : <button onClick={handleAddFavPainting} className="gallery-btn">add to gallery</button>} 
                     </div>
                 </div>
             </div>

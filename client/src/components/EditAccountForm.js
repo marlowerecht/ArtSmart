@@ -64,7 +64,7 @@ function EditAccountForm({ user, onEditAccountInfo, wrapViewingEditFormSetterFun
                         onChange={handleChange}/>
                 </label>
 
-                <button type='submit'>save changes</button>
+                <button type='submit' className="profile-btn">save changes</button>
             </form>
             {errors ? <h2>{errors.map(error => <h3>{error}</h3>)}</h2> : null}
         </div>

@@ -136,7 +136,7 @@ function App() {
           <Route path="/mygallery">
             {!currentUser ? <Login onLogin={onLogin}/> :
               <>
-                <Header />
+                <Header user={currentUser} />
                 <MyGallery 
                   favorites={favorites} 
                   user={currentUser} 
@@ -153,7 +153,7 @@ function App() {
           <Route path="/profile">
             {!currentUser ? <Login onLogin={onLogin}/> :
               <>
-                <Header />
+                <Header user={currentUser} />
                 <Profile 
                   onLogout={onLogout}
                   user={currentUser}
@@ -161,7 +161,7 @@ function App() {
               </>
             }
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             {!currentUser ?
               <>
                 <Route path='/login'>
@@ -170,7 +170,7 @@ function App() {
               </>
               :
               <>
-                <Header />
+                <Header user={currentUser} />
                 <Homepage 
                   user={currentUser} 
                   paintings={filteredPaintings} 
@@ -188,15 +188,15 @@ function App() {
           </Route>
         </Switch>
         <Route path='/deleteaccount'>
-          <Header />
+          <Header user={currentUser} />
           <DeleteAccount user={currentUser}/>
         </Route>
         <Route path='/signup'>
           <Signup onLogin={onLogin}/>
         </Route>
-        {/* <Route path='/login'>
+        <Route path='/login'>
           <Login onLogin={onLogin}/>
-        </Route> */}
+        </Route>
 
       </div>
     </BrowserRouter>

@@ -4,7 +4,6 @@ function MyGallery({ user, favPaintings, favorites, paintings, onAddFavPainting,
 
     return(
         <div>
-            <h1>My Gallery</h1>
             {(paintings && favorites) ?
                 <ArtList   
                     user={user} 

@@ -5,10 +5,11 @@ function Homepage({ user, paintings, favorites, favPaintings, onAddFavPainting, 
 
     return (
         <div className="text-amber-900">
-            {user ? <h2>hello, {user.name.toLowerCase()}</h2> : <h2>loading...</h2>}
-            <Search 
-                searchTerm={searchTerm} 
-                filterSearch={filterSearch}/>
+            <div className="mt-2">
+                <Search 
+                    searchTerm={searchTerm} 
+                    filterSearch={filterSearch}/>
+            </div>
             <div>
                 <ArtList 
                     user={user} 
