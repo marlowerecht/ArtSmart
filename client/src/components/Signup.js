@@ -37,7 +37,7 @@ function Signup({ onLogin }) {
                 res.json().then((user) => {
                     onLogin(user)
                     setFormData(initialFormValues)
-                    history.push('/homepage')
+                    history.push('/')
                 })
             } else {
                 res.json().then((errors) => setErrors(errors.errors))

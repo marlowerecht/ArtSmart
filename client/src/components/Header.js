@@ -26,18 +26,18 @@ function Header({ user }) {
                         </svg>
                     </div>
                 </div>
-                <div className="hidden nav-links" ref={navLinks}>
-                    <div className="nav-link-btn">
+                <div className="hidden  nav-links" ref={navLinks}>
+                    <div className=" nav-link-btn">
                         <NavLink exact to="/">
                             home
                         </NavLink>
                     </div>
-                    <div className="nav-link-btn">
+                    <div className=" nav-link-btn">
                         <NavLink exact to='/mygallery'>
                             my gallery
                         </NavLink>    
                     </div>
-                    <div className="nav-link-btn">
+                    <div className=" nav-link-btn">
                         <NavLink exact to='/profile'>
                             profile
                         </NavLink>

@@ -12,14 +12,18 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
     const [ commentFormShowing, setCommentFormShowing ] = useState(false)
     const [ paintingComments, setPaintingComments ] = useState(comments)
 
+
     // displays comments depending on state
-    const renderedComments = comments.map(comment => {
+    const renderedComments = paintingComments.map(comment => {
         return <Comment 
                     key={comment.id} 
                     comment={comment} 
                     currentUser={user} 
                     onEditComment={onEditComment} 
-                    onDeleteComment={onDeleteComment}/>
+                    onDeleteComment={onDeleteComment}
+                    wrapCommentSetterFunction={wrapCommentSetterFunction}
+                    paintingComments={paintingComments}
+                    />
     })
 
     // adds painting to my gallery
@@ -40,8 +44,11 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
                 body: JSON.stringify(addedPainting)
             })
             .then(res => res.json())
-            .then(() => onAddFavPainting(painting))
-            .then(setIsFav(true))
+            .then((data) => {
+                onAddFavPainting(data)
+                // onAddToGallery(painting)
+                setIsFav(true)
+            })
         }
     }
 
@@ -53,8 +60,11 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
         fetch(`/favorites/${favorite_id}`, {
             method: 'DELETE'
         })
-        .then(() => onRemoveFavPainting(painting))
-        .then(() => setIsFav(false))
+        .then(() => {
+            onRemoveFavPainting(painting)
+            // onRemoveGalleryPainting(painting)
+            setIsFav(false)
+        })
     }
 
     // shows comments
@@ -77,8 +87,15 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
         setCommentFormShowing(value)
     }
 
-    function wrapCommentSetterFunction(newComment) {
-        setPaintingComments([...paintingComments, newComment])
+    // send setter function for painting's comments
+    function wrapCommentSetterFunction(updatedComments) {
+        console.log(updatedComments)
+        setPaintingComments(updatedComments)
+    }
+
+    // wraps setter function controlling if the comments are displayed or not
+    function wrapViewingCommentsSetterFunction(value) {
+        setViewingComments(value)
     }
 
     return (
@@ -102,7 +119,9 @@ function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemo
                                                 user={user} 
                                                 commentFormSetterFunction={wrapCommentFormSetterFunction}
                                                 onPublishComment={onPublishComment} 
-                                                wrapCommentSetterFunction={wrapCommentSetterFunction}/> 
+                                                wrapCommentSetterFunction={wrapCommentSetterFunction}
+                                                wrapViewingCommentsSetterFunction={wrapViewingCommentsSetterFunction}
+                                                paintingComments={paintingComments}/> 
                                             : <button onClick={handleShowCommentForm} className="my-2 comment-btn">write comment</button>}
                         {viewingComments ? renderedComments : null}
                     </div>

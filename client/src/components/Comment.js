@@ -1,7 +1,7 @@
 import EditCommentForm from "./EditCommentForm.js";
 import { useState } from 'react';
 
-function Comment({ comment, currentUser, onEditComment, onDeleteComment }) {
+function Comment({ comment, currentUser, onEditComment, onDeleteComment, wrapCommentSetterFunction, paintingComments }) {
     const [ viewingEditForm, setViewingEditForm ] = useState(false)
 
     const { content, user } = comment
@@ -19,7 +19,13 @@ function Comment({ comment, currentUser, onEditComment, onDeleteComment }) {
         fetch(`/comments/${comment.id}`, {
             method: 'DELETE'
         })
-        .then(() => onDeleteComment(comment))
+        .then(() => {
+            onDeleteComment(comment)
+            const updatedComments = paintingComments.filter(oneComment => {
+                return oneComment.id !== comment.id
+            })
+            wrapCommentSetterFunction(updatedComments)
+        })
     }
 
     return (

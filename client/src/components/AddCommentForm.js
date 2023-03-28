@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-function AddCommentForm({ painting, user, commentFormSetterFunction, onPublishComment, wrapCommentSetterFunction }) {
+function AddCommentForm({ painting, user, commentFormSetterFunction, onPublishComment, wrapCommentSetterFunction, wrapViewingCommentsSetterFunction, paintingComments }) {
     const history = useHistory()
 
     const current = new Date();
@@ -34,8 +34,9 @@ function AddCommentForm({ painting, user, commentFormSetterFunction, onPublishCo
         .then(() => {
             onPublishComment(formData)
             setFormData(initialFormData)
-            commentFormSetterFunction(false)
-            wrapCommentSetterFunction(formData)
+            commentFormSetterFunction(false) 
+            wrapCommentSetterFunction([...paintingComments, {...formData, user: user}])
+            wrapViewingCommentsSetterFunction(true)
         })
     }
 
@@ -49,6 +50,7 @@ function AddCommentForm({ painting, user, commentFormSetterFunction, onPublishCo
             <form onSubmit={handleSubmit}>
                 <label>
                     <input 
+                        className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"
                         type='text' 
                         name='content'
                         value={formData.content}

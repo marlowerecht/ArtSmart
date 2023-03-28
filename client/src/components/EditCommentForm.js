@@ -30,7 +30,6 @@ function EditCommentForm({ currentContent, comment, onEditComment, viewingEditFo
         .then(() => {
             onEditComment(formData)
             viewingEditFormSetterFunction(false)
-            history.push("/")
         })
     }
 
