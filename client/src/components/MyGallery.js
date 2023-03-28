@@ -1,9 +1,9 @@
 import ArtList from "./ArtList";
 
-function MyGallery({ user, favPaintings, favorites, paintings, onAddFavPainting, onRemoveFavPainting, allUsers, onEditComment, onDeleteComment, onPublishComment }) {
+function MyGallery({ user, favorites, paintings, onAddFavPainting, onRemoveFavPainting, allUsers, onEditComment, onDeleteComment, onPublishComment }) {
 
     return(
-        <div>
+        <div className="min-h-screen">
             <h3 className="m-6 text-lg flex justify-center">m y g a l l e r y</h3>
             {(paintings && favorites) ?
                 <ArtList   
@@ -11,7 +11,7 @@ function MyGallery({ user, favPaintings, favorites, paintings, onAddFavPainting,
                     paintings={paintings} 
                     favorites={favorites} 
                     favPaintings={paintings} 
-                    onAddFavPainting={onAddFavPainting} 
+                    onAddFavPainting={onAddFavPainting}
                     onRemoveFavPainting={onRemoveFavPainting}
                     allUsers={allUsers}
                     onEditComment={onEditComment}

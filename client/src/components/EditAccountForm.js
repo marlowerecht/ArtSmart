@@ -80,7 +80,7 @@ function EditAccountForm({ user, onEditAccountInfo, wrapViewingEditFormSetterFun
                     <button type='submit' className="p-2 bg-yellow-100 bg-opacity-20 text-sm m-2 hover:bg-yellow-300 hover:bg-opacity-30 hover:shadow-md hover:border-2 border-amber-900 transition ease-out duration-500">save changes</button>   
                 </div>
             </form>
-            {errors ? <h2 classname="mx-4 font-bold text-lg">{errors.map(error => <h3>{error}</h3>)}</h2> : null}
+            {errors ? <h2 className="mx-4 font-bold text-lg">{errors.map(error => <h3>{error}</h3>)}</h2> : null}
         </div>
     )
 }

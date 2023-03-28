@@ -80,6 +80,7 @@ function App() {
 
   //add paintnig to user's gallery (favorites)
   function onAddFavPainting(painting) {
+    console.log(painting)
     setFavorites([...favorites, painting])
   }
 
@@ -91,9 +92,8 @@ function App() {
 
   // adds a new comments
   function onPublishComment(newComment) {
-    setComments([...comments, newComment])
-    // const paintingWithNewComment = paintings.filter(painting => painting.id === newComment.painting_id)
-    // paintingWithNewComment[comments] = [...comments, newComment]
+    setComments([...comments, {...newComment, user: currentUser}])
+
   }
 
   // updates comments when an edit is made
@@ -141,7 +141,7 @@ function App() {
                   favorites={favorites} 
                   user={currentUser} 
                   paintings={favoritePaintings()} // this is the actual painting instances, not favorite instances (diff models)
-                  favPaintings={favoritePaintings()} // used to check state of painting in ArtList and ArtCard
+                  favPaintings={favoritePaintings()} // this is used to check state of painting in ArtList and ArtCard
                   onAddFavPainting={onAddFavPainting} 
                   onRemoveFavPainting={onRemoveFavPainting}
                   onPublishComment={onPublishComment}
@@ -164,9 +164,7 @@ function App() {
           <Route exact path="/">
             {!currentUser ?
               <>
-                <Route path='/login'>
                   <Login onLogin={onLogin}/>
-                </Route>
               </>
               :
               <>
