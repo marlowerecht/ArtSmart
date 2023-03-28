@@ -29,8 +29,16 @@ johannes_vermeer = Artist.create!(name: "Johannes Vermeer", nationality: "Dutch"
 vincent_van_gogh = Artist.create!(name: "Vincent van Gogh", nationality: "Dutch", born: "1853", died: "1890")
 masaccio = Artist.create!(name: "Masaccio", nationality: "Italian", born: "1401", died: "1428")
 annibale_carracci = Artist.create!(name: "Annibale Carracci", nationality: "Italian", born: "1560", died: "1609")
+prudhon = Artist.create!(name: "Pierre-Paul Prud'hon", nationality: "French", born: "1758", died: "1823")
+derain = Artist.create!(name: "André Derain", nationality: "French", born: "1880", died: "1954")
+pollock = Artist.create!(name: "Jackson Pollock", nationality: "American", born: "1912", died: "1956")
+unknown_1 = Artist.create!(name: "Unknown", nationality: "", born: "", died: "")
+uccello = Artist.create!(name: "Paulo Uccello", nationality: "Italian", born: "1397", died: "1475")
+
 
 # masaccio = Artist.create!(name: "", nationality: "", born: "", died: "")
+
+
 
 puts "done seeding artists!"
 
@@ -43,8 +51,14 @@ girl_with_a_pearl_earring = Painting.create!(name: "Girl with a Pearl Earring", 
 starry_night = Painting.create!(name: "The Starry Night", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/700px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg", period: "Post-Impressionism", date: "c. 1889", location: "The Museum of Modern Art, New York", medium: "oil on canvas", dimensions: "73.7 cm x 92.1 cm (29.01 in x 36.26 in)", artist_id: Artist.third.id)
 tribute_money = Painting.create!(name: "The Tribute Money", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Masaccio7.jpg/540px-Masaccio7.jpg", period: "Italian Renaissance", date: "c. 1425", location: "Brancacci Chapel, Florence", medium: "fresco", dimensions: "247 cm x 597 cm (97.2 in x 235 in)", artist_id: Artist.fourth.id)
 flight_into_egypt = Painting.create!(name: "Flight into Egypt", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Annibale_Carracci_003.jpg/600px-Annibale_Carracci_003.jpg", period: "Baroque", date: "c. 1604", location: "Galleria Doria Pamphilj, Rome", medium: "oil on canvas", dimensions: "122 cm x 230 cm (48 in x 91 in", artist_id: Artist.fifth.id)
+portrait_of_the_empress_josephine = Painting.create!(name: "Portrait of the Empress Josephine", image: "https://www.napoleon.org/wp-content/thumbnails/uploads/2012/10/462771_1-tt-width-365-height-500-crop-1-bgcolor-ffffff-lazyload-0.jpg", period: "French Romanticism", date: "1805", location: "Louvre Musem, Paris", medium: "oil on canvas", dimensions: "96 x 70 in", artist_id: Artist.find(6).id)
+barge_on_the_thames = Painting.create!(name: "Barge on the Thames", image: "https://d3d00swyhr67nd.cloudfront.net/w944h944/collection/WYL/LMG/WYL_LMG_100016-001.jpg", period: "Fauvism", date: "1906", location: "Leeds, England", medium: "oil on canvas", dimensions: "31.75 x 38.75 in", artist_id: Artist.find(7).id)
+eyes_in_the_heat = Painting.create!(name: "Eyes in the Heat (Sounds in the Grass Series)", image: "https://www.guggenheim.org/wp-content/uploads/1946/01/76.2553.149_ph_web-1.jpg", period: "Abstract Expressionism", date: "1946", location: "Peggy Guggenheim Foundation, Venice, Italy", medium: "oil on canvas", dimensions: "54 x 43 in", artist_id: Artist.find(8).id)
+shaft_of_the_dead_man = Painting.create!(name: "The Shaft of the Dead Man", image: "http://www.visual-arts-cork.com/images/prehistoric-altamira3.jpg", period: "Prehistoric Art", date: "c. 17,000 BCE", location: "Lascaux, Dordogne, Franch", medium: "rock painting", dimensions: "", artist_id: Artist.find(9).id)
+hunt_in_the_forest = Painting.create!(name: "The Hunt in the Forest", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Hunt_in_the_forest_by_paolo_uccello.jpg/800px-Hunt_in_the_forest_by_paolo_uccello.jpg", period: "Italian Renaissance", date: "1460s", location: "Ashmolean, Oxford, England", medium: "oil on panel", dimensions: "28.75 x 70 in", artist_id: Artist.find(10).id)
 
 # tribute_money = Painting.create!(name: "", image: "", period: "", date: "", location: "", medium: "", dimensions: "", artist_id: Artist.fourth.id)
+
 
 puts "done seeding paintings!"
 

@@ -7,12 +7,13 @@ import Header from './components/Header.js';
 import MyGallery from './components/MyGallery.js'
 import DeleteAccount from "./components/DeleteAccount.js";
 import Signup from "./components/Signup.js";
-// import './index.css'
+// import useRenderPaintings from "./useRenderPaintings.js";
 
 function App() {
   //state
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ paintings, setPaintings ] = useState([])
+  const [ pageNumber, setPageNumber ] = useState(1)
   const [ favorites, setFavorites ] = useState([])
   const [ comments, setComments ] = useState([])
   const [ searchTerm, setSearchTerm ] = useState('')  
@@ -27,7 +28,16 @@ function App() {
     });
   },[])
 
-  // fetches all paintings
+  // const {
+  //   hookPaintings,
+  //   hasMore,
+  //   loading,
+  //   error
+  // } = useRenderPaintings(pageNumber)
+
+  // console.log(hookPaintings[0].map(p => p.name))
+
+  //fetches all paintings
   useEffect(() => {
     fetch('/paintings')
     .then(res => {

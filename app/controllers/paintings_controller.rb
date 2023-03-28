@@ -2,7 +2,7 @@ class PaintingsController < ApplicationController
 
     #gets all of the paintings
     def index
-        paintings = Painting.all 
+        paintings = Painting.all.shuffle 
         render json: paintings, include: ['artist', 'comments', 'comments.user'], status: :ok
     end
 
