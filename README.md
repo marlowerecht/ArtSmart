@@ -1,20 +1,48 @@
 # ArtSmart
 
-Welcome to ArtSmart!  ArtSmart is an app that allows users to browse art, save it to their favorites, and have discussions with others users by commenting on different pieces. The art available on the website comes from [The Metropolitan Museum of Art](https://github.com/metmuseum/) API which has data for their entire collection.
+Welcome to ArtSmart!  ArtSmart is an app for art enthusiasts and those that just want ot learn more.  Here, users can browse all of the art in the database, which I hope to continue expanding.  Each user has a gallery where they can keep their favorite paintngs.  In addition, users can comment on any and all of the pieces and hopefully spark discussion with other users!
 
-## Backend
+This app came into being as the capstone project in my software engineering bootcamp.  Personally, I am very interested in art, and I thought why not make an app for browsing, discoering new pieces, and meeting other enthusiasts.  The frontend is built with React.js and the backend with Ruby on Rails as an opportunity to showcase what I have learned in my course.
 
-ArtSmart utilizes Ruby on Rails to develop the backend.  There are four tables `User.rb`, `Artist.rb`, `Painting.rb`, and `Comment.rb`.
+In the future, I would like to expand the available features on this app.  I have many ideas, including custom galleries that users can create, a follow feature to connect different users, and an entire page devoted to the artists themselves, among others.
 
+## How to Install and Run
+To run this app, make sure to run `bundle install` and `npm install --prefix client` (or just `npm install` if you navigated into the client directory).  This installs the dependences for the front and backend that the app needs to function.
+
+To start the server, run `rails s`.  This will start the server on localhost:3000.  To run the frontend, first go to a new terminal, and run `npm start --prefix client` (or just `npm start` if you navigated into the client directory).  This will run the app on localhost:4000.
+
+## Using ArtSmart
+
+### Login/Signup
+To make use of any of the features ArtSmart offers, you must first make an account.  This requires a name, a unique username, a unique and valid email and a password.  If any of the fields do not meet the requirements, error messages will appear and guide users.
+
+### Homepage and MyGallery
+Upon a succesful login or signup, users are redirected to the app's homepage.  Of all of the pieces in the database, five are randomly selected and displayed.  Users can view more by clicking the button at the bottom of the last paiting.  All functionality regarding the pieces of art are present on the homepage and the user's gallery.  Users can add or remove paintings from their gallery, view comments, add comments, and edit or delete their own comments (this function is not available if they are not the user who wrote the comment).
+
+In the user's gallery, users can browse only the pieces that they have selected.  All functionality is still present here.
+
+### Profile and Account Information
+In the profile page, user's have the ability to view their account details (name, username, email), and change any of these details.  The requirements and validations still apply here, and error messages will appear and guide users if the input is invalid.
+
+From this page, users can also delete their account.  They are directed to a page that confirms they want to delete their account, and if they choose to, they are redirected to the login page.
+
+## Development Process
 ### Entity Relationship Diagram
 
-A user have many paintings and have many artists through paintings.  An artist has many paintings and many users through paintings.  A painting belongs to a user and an artist.  Finally, a painting has many comments, and each comment belongs to a painting.
+- A user has many comments and many favorites
+    - A user has many paintings through comments and also favorites
+- An artist has many paintings
+- A painting has many comments and many favorites
+    - A painting has many users through comments and also favorites
+    - A painting belongs to an artist
+- A favorite belongs to a user and a painting
+- A comment belongs to a user and a painting
 
-![Entity Relationship Diagram](public/images/erd.png)
+![EntityRelationship Diagram](public/images/erd.png)
 
 ### Model Validations
 
-The user model has many validations to ensure the integrity of the entered data.  Regex is used to make sure email and password inputs meet the various requirements.
+The user model has many validations to ensure the integrity of the entered data.
 The other models validate that the most essential data is present.
 
 ![Model Validations](public/images/validations.png)
@@ -25,69 +53,50 @@ The other models validate that the most essential data is present.
 
 ![User Routes](public/images/user-routes.png)
 
-**Painting** is allowed update and read capabilities.  Painting data is fetched and displayed depending on the specific criteria.  Also, a user favorite a painting and change the `user_favorite` attribute.
+**Painting** is only given read capabilities.  All paintings are fetched when a user logs in and then displayed according to the specific criteria.
 
-![Painting Routes](public/images/painting-routes.png)
+![Painting Routes](public/images/paintings-routes.png)
 
 **Comment** is also allowed full CRUD capabilities.  Users may view the comments for a specific painting, write and post comments, and edit and delete comments (if they belong to that user).
 
 ![Comment Routes](public/images/comment-routes.png)
 
-## Frontend
+**Favorites** is given read, post, and delete capabilities.  All favorites are fetched upon login, and then users can add a painting to their gallery (create a new favorite) or remove a painting from their gallery (delete a favorite).
 
-ArtSmart utilized React to develop the frontend.  There are a total of twelve components:
-- App.js
-- Login.js
-- Signup.js
-- Homepage.js
-- MyGallery.js
-- BucketList.js
-- SeenArt.js
-- Profile.js
-- Search.js
-- ArtList.js
-- ArtCard.js
-- DeleteAccount.js
-- Header.js
+![Favorite Routes](public/images/favorites-routes.png)
+
+## Frontend
 
 Component Tree:
 ![Component Tree](public/images/component-tree.png)
 
-### `App.js`
-**App** is the container component.  It holds all the children.
-
-### `Login.js`
-**Login** is the component that users are directed to when they go to the app.  They can either login and be directed to `Homepage.js` or they can click a button to be directed to `Signup.js`.
-
-### `Signup.js`
-**Signup** is the component where users can create an account with ArtSmart.  Upon successful creation, users are directed to `Homepage.js`.  `Signup.js` is making a POST request to `/users`.
-
-### `Homepage.js`
-**Homepage** is the component that users are directed to as soon as they login/signup.  It shows `Header.js` at the top and `ArtCard.js` of a randomly generated painting.
-
-### `MyGallery.js`
-**MyGallery** is the component that contains an `ArtCard.js` for every painting the user has added to their gallery.
-
-### `BucketList.js`
-**BucketList** is the component that contains an `ArtCard.js` for every painting the user has added to their bucket list.
-
-### `SeenArt.js`
-**SeenArt** is the component that contains an `ArtCard.js` for every painting the user has marked as "seen".
-
-### `ArtList.js`
-**ArtList** is the component that renders and holds an `ArtCard.js` for every piece of art that meets the given criteria.
-
-### `ArtCard.js`
-**ArtCard** is the that renders the details for every piece of art.
-
-### `Search.js`
-**Search** is visible on `Homepage.js` and allows users to filter for art based on the title of the piece, the artist, or the medium.  It renders `ArtList.js` with the appropriate responses.
-
-### `Profile.js`
-**Profile** is the component where users than view and update their personal information.  It also contains a button that directs users to `DeleteAccount.js` is they want to delete their account.
-
-### `DeleteAccount.js`
-**DeleteAccount** is the component where users confirm that they would like to delete their account.  Upon confirmation, users are redirected to `Signup.js`.
-
-### `Header.js`
-**Header** is the component where the navigation bar lives.  The navigation bar contains routes that allows users to navigate throughout the app.  It is visible on every component except `Login.js` and `Signup.js` because users have to be logged in to access the rest of the app's functionality.
+- `App.js`
+    - Container element
+- `Login.js`
+    - Users are directed to this page when they reach the app
+- `Signup.js`
+    - If users don't have an account, they create one here
+- `Header.js`
+    - Visible on all pages except Login.js and Signup.js.  Has links to all of app's pages.
+- `Homepage.js`
+    - Users are directed here after successful login/signup.  Displays five random pieces of art with button to continuously display five more until all are shown.
+- `MyGallery.js`
+    - Displays all of the pieces of art that a users has added to their gallery.
+- `Search.js`
+    - Filters art being displayed based on what the user types (only filters by name of art or artist)
+- `ArtList.js`
+    - Holds all of the cards for each piece of art being displayed
+- `ArtCard.js`
+    - Renders a card for each piece of art
+- `Comment.js`
+    - Show one comment with related functionality if available (users can only interact with a comment if it is theirs)
+- `AddCommentForm.js`
+    - Allows users to comment on a specific piece of art
+- `EditCommentForm.js`
+    - Allows users to edit their own comments
+- `Profile.js`
+    - Displays account information
+- `DeleteAccount.js`
+    - Asks user if they are sure they want to delete their account.  If yes, the account is deleted and the user is directed to the login page.  If no, then they are directed back to the homepage.
+- `EditAccountForm.js`
+    - Allows users to change their account information
