@@ -37,7 +37,7 @@
 }
 
 .painting-img{
-    @apply border-8 border-yellow-700
+    @apply border-8 border-yellow-700 p-2
 }
 
 .comment-card{

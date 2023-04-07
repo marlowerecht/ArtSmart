@@ -3,7 +3,7 @@ import ArtList from "./ArtList";
 function MyGallery({ user, favorites, paintings, onAddFavPainting, onRemoveFavPainting, allUsers, onEditComment, onDeleteComment, onPublishComment }) {
 
     return(
-        <div className="min-h-screen">
+        <div className="min-h-screen z-0">
             <h3 className="m-6 text-lg flex justify-center">m y g a l l e r y</h3>
             {(paintings && favorites) ?
                 <ArtList   

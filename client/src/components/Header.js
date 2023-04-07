@@ -15,7 +15,7 @@ function Header({ user }) {
     }
 
     return (
-        <header className="md:border-b-2 border-amber-900 border-double ">
+        <header className="md:border-b-2 border-amber-900 border-double z-10">
             <nav className="relative">
                 <div className="flex justify-between items-center md:block">
                     <h1 className="app-name">A r t S m a r t</h1>
