@@ -142,11 +142,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="body">
+      {currentUser ? <Header user={currentUser} /> : null}
         <Switch>
           <Route path="/mygallery">
             {!currentUser ? <Login onLogin={onLogin}/> :
               <>
-                <Header user={currentUser} />
+                {/* <Header user={currentUser} /> */}
                 <MyGallery 
                   favorites={favorites} 
                   user={currentUser} 
@@ -163,7 +164,7 @@ function App() {
           <Route path="/profile">
             {!currentUser ? <Login onLogin={onLogin}/> :
               <>
-                <Header user={currentUser} />
+                {/* <Header user={currentUser} /> */}
                 <Profile 
                   onLogout={onLogout}
                   user={currentUser}
@@ -178,7 +179,7 @@ function App() {
               </>
               :
               <>
-                <Header user={currentUser} />
+                {/* <Header user={currentUser} /> */}
                 <Homepage 
                   user={currentUser} 
                   paintings={filteredPaintings} 
@@ -196,7 +197,7 @@ function App() {
           </Route>
         </Switch>
         <Route path='/deleteaccount'>
-          <Header user={currentUser} />
+          {/* <Header user={currentUser} /> */}
           <DeleteAccount user={currentUser}/>
         </Route>
         <Route path='/signup'>
