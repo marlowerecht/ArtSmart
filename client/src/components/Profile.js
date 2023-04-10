@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import Header from './Header.js';
-import DeleteAccount from './DeleteAccount.js';
 import EditAccountForm from './EditAccountForm.js'
 
 function Profile({ onLogout, user, onEditAccountInfo }) {
@@ -34,6 +32,10 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
     // shows account information edit form
     function handleEditInformation() {
         setViewingEditForm(true)
+    }
+
+    function handleAddArt() {
+        history.push('/addart')
     }
 
     //wrapper function to pass down setter function
@@ -68,6 +70,14 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
                     <div className="flex justify-center">
                         <button onClick={handleLogoutClick} className="profile-btn">logout</button>
                     </div>
+
+                    {user.name == 'admin' ? 
+                        <div className="flex justify-center">
+                            <button onClick={handleAddArt} className="profile-btn">add art</button>
+                        </div>
+                        :
+                        null
+                    }
 
              <div className="flex justify-end m-4">
                 <button onClick={sendToDeleteAccount} className="profile-btn">delete account</button>

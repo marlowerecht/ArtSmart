@@ -5,7 +5,7 @@ import AddCommentForm from './AddCommentForm.js';
 function ArtCard({ user, painting, favorites, favState, onAddFavPainting, onRemoveFavPainting, onPublishComment, onEditComment, onDeleteComment }) {
 
     // attributes of each painting
-    const { name, image, period, date, medium, dimensions, artist, comments, user_seen } = painting
+    const { name, image, period, date, medium, dimensions, artist, comments } = painting
 
     const [ isFav, setIsFav ] = useState(favState)
     const [ viewingComments, setViewingComments ] = useState(false)
