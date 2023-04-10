@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :favorites, only: [:index, :show, :create, :destroy]
   resources :comments, only: [:index, :create, :update, :destroy]
-  resources :paintings, only: [:index, :update]
-  resources :artists, only: [:show]
+  resources :paintings, only: [:index, :create, :update, :destroy]
+  resources :artists, only: [:index, :show, :create]
   resources :users, only: [:index, :show, :create, :update, :destroy]
 
   post '/login', to: 'sessions#create'

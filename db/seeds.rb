@@ -14,6 +14,7 @@ puts "here we go..."
 # users
 puts "seeding users..."
 
+admin = User.create!(name: "admin", username: "admin", email: "admin@mail.com", password: "admin123", admin: true)
 betty = User.create!(name: "Betty", username: "Betty123", email: "betty@mail.com", password: "Betty123*")
 inez = User.create!(name: "Inez", username: "Inez123", email: "inez@mail.com", password: "Inez123*")
 augustine = User.create!(name: "Augustine", username: "Augustine123", email: "augustine@mail.com", password: "Augustine123*")

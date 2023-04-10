@@ -7,13 +7,12 @@ import Header from './components/Header.js';
 import MyGallery from './components/MyGallery.js'
 import DeleteAccount from "./components/DeleteAccount.js";
 import Signup from "./components/Signup.js";
-// import useRenderPaintings from "./useRenderPaintings.js";
+import AddArtForms from "./components/AddArtForms.js";
 
 function App() {
   //state
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ paintings, setPaintings ] = useState([])
-  const [ pageNumber, setPageNumber ] = useState(1)
   const [ favorites, setFavorites ] = useState([])
   const [ comments, setComments ] = useState([])
   const [ searchTerm, setSearchTerm ] = useState('')  
@@ -28,15 +27,6 @@ function App() {
     });
   },[])
 
-  // const {
-  //   hookPaintings,
-  //   hasMore,
-  //   loading,
-  //   error
-  // } = useRenderPaintings(pageNumber)
-
-  // console.log(hookPaintings[0].map(p => p.name))
-
   //fetches all paintings
   useEffect(() => {
     fetch('/paintings')
@@ -47,6 +37,8 @@ function App() {
     })
   },[currentUser])
 
+  console.log(paintings)
+
   // fetches all favorites of current user
   useEffect(() => {
     fetch(`/favorites`)
@@ -56,6 +48,8 @@ function App() {
       }
     })
   },[currentUser])
+
+  console.log(favorites)
 
   // fetches all comments
   useEffect(() => {
@@ -114,7 +108,7 @@ function App() {
     setComments(updatedComments)
   }
 
-  // deltes comment
+  // deletes comment
   function onDeleteComment(deletedComment) {
     const updatedComments = comments.filter(comment => {
       return comment.id !== deletedComment.id
@@ -128,6 +122,10 @@ function App() {
     currentUser["name"] = updatedUserInfo.name 
     currentUser["username"] = updatedUserInfo.username
     currentUser["email"] = updatedUserInfo.email
+  }
+
+  function onAddPainting(newPainting) {
+    setPaintings([...paintings, newPainting])
   }
 
   // sets search value to what user typed in
@@ -164,7 +162,6 @@ function App() {
           <Route path="/profile">
             {!currentUser ? <Login onLogin={onLogin}/> :
               <>
-                {/* <Header user={currentUser} /> */}
                 <Profile 
                   onLogout={onLogout}
                   user={currentUser}
@@ -179,7 +176,6 @@ function App() {
               </>
               :
               <>
-                {/* <Header user={currentUser} /> */}
                 <Homepage 
                   user={currentUser} 
                   paintings={filteredPaintings} 
@@ -197,7 +193,6 @@ function App() {
           </Route>
         </Switch>
         <Route path='/deleteaccount'>
-          {/* <Header user={currentUser} /> */}
           <DeleteAccount user={currentUser}/>
         </Route>
         <Route path='/signup'>
@@ -205,6 +200,9 @@ function App() {
         </Route>
         <Route path='/login'>
           <Login onLogin={onLogin}/>
+        </Route>
+        <Route path='/addart'>
+          <AddArtForms user={currentUser} onAddPainting={onAddPainting}/>
         </Route>
 
       </div>
