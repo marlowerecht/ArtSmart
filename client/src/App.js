@@ -7,7 +7,8 @@ import Header from './components/Header.js';
 import MyGallery from './components/MyGallery.js'
 import DeleteAccount from "./components/DeleteAccount.js";
 import Signup from "./components/Signup.js";
-import AddArtForms from "./components/AddArtForms.js";
+import AddArtistForm from "./components/AddArtistForm.js";
+import AddPaintingForm from "./components/AddPaintingForm.js";
 
 function App() {
   //state
@@ -212,8 +213,11 @@ function App() {
         <Route path='/login'>
           <Login onLogin={onLogin}/>
         </Route>
-        <Route path='/addart'>
-          <AddArtForms user={currentUser} onAddPainting={onAddPainting} artists={artists} onAddArtist={onAddArtist}/>
+        <Route path='/addartist'>
+          <AddArtistForm artists={artists} onAddArtist={onAddArtist}/>
+        </Route>
+        <Route path='/addartwork'>
+          <AddPaintingForm onAddPainting={onAddPainting} artists={artists}/>
         </Route>
 
       </div>

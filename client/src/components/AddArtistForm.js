@@ -55,61 +55,61 @@ function AddArtistForm( onAddArtist ) {
     return (
         <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2">
 
+        <div>
+
         <h1 className="m-6 text-lg flex justify-center font-bold">add new artist</h1>
 
         <form onSubmit={(e) => handleSubmit(e)}>
-            <div className="flex-col flex justify-center">
+            <div>
 
-                <div className="profile-info-div mx-2">
-                    <label >name
-                        <input 
-                            type="text"
-                            name="name"
-                            value={name}
-                            onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                <div className="profile-info-div mx-2 flex">
+                    <p className="flex justify-start">name</p>
+                    <input 
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={handleChange}
+                        className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>nationality
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">nationality</p>
                         <input 
                             type="text"
                             name="nationality"
                             value={nationality}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>born
+                <div className="profile-info-div m-2 flex">
+                    <p classNam="flex justify-start">born</p>
                         <input 
                             type="text"
                             name="born"
                             value={born}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
                 <div className="profile-info-div m-2">
-                    <label>died
+                    <p className="flex justify-start">died</p>
                         <input 
                             type="text"
                             name="died"
                             value={died}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div>
+                <div className="flex justify-center">
                     <button type="submit" className="profile-btn">create new artist</button>
                 </div>
             </div>
         </form>
         {errors ? <h2 className="mx-4 font-bold text-lg">{errors.map(error => <h3>{error}</h3>)}</h2> : null}
+
+        </div>
 
         </div>
     )

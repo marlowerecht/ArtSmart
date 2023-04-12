@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import EditAccountForm from './EditAccountForm.js'
 
@@ -34,8 +33,12 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
         setViewingEditForm(true)
     }
 
-    function handleAddArt() {
-        history.push('/addart')
+    function handleAddArtist() {
+        history.push('/addartist')
+    }
+
+    function handleAddArtwork() {
+        history.push('/addartwork')
     }
 
     //wrapper function to pass down setter function
@@ -71,13 +74,25 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
                         <button onClick={handleLogoutClick} className="profile-btn">logout</button>
                     </div>
 
-                    {user.name == 'admin' ? 
-                        <div className="flex justify-center">
-                            <button onClick={handleAddArt} className="profile-btn">add art</button>
-                        </div>
-                        :
-                        null
-                    }
+                    <div className="flex justify-center">
+
+                        {user.name == 'admin' ? 
+                            <div>
+                                <button onClick={handleAddArtist} className="profile-btn">add artist</button>
+                            </div>
+                            :
+                            null
+                        }
+
+                        {user.name == 'admin' ? 
+                            <div >
+                                <button onClick={handleAddArtwork} className="profile-btn">add artwork</button>
+                            </div>
+                            :
+                            null
+                        }
+
+                    </div>     
 
              <div className="flex justify-end m-4">
                 <button onClick={sendToDeleteAccount} className="profile-btn">delete account</button>
