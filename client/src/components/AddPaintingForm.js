@@ -65,7 +65,7 @@ function AddPaintingForm( artists, onAddPainting ) {
     const artistsToMap = artists.onAddPainting.artists
 
     return (
-        <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2 flex justify-center">
+        <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2">
 
         <h1 className="m-6 text-lg flex justify-center font-bold">add new artwork</h1>
 
