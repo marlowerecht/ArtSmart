@@ -64,6 +64,8 @@ function AddPaintingForm( artists, onAddPainting ) {
 
     const artistsToMap = artists.onAddPainting.artists
 
+    console.log(artistsToMap)
+
     return (
         <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2">
 
@@ -71,91 +73,88 @@ function AddPaintingForm( artists, onAddPainting ) {
 
         <form onSubmit={(e) => handleSubmit(e)}>
             <div>
-                <div className="profile-info-div m-2">
-                    <label>name
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">name</p>
                         <input 
                             type="text"
                             name="name"
                             value={name}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>image
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">image</p>
                         <input 
                             type="text"
                             name="image"
                             value={image}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>period
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">period</p>
                         <input 
                             type="text"
                             name="period"
                             value={period}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>date
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">date</p>
                         <input 
                             type="text"
                             name="date"
                             value={date}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>medium
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">medium</p>
                         <input 
                             type="text"
                             name="medium"
                             value={medium}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>dimensions
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">dimensions</p>
                         <input 
                             type="text"
                             name="dimensions"
                             value={dimensions}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>location
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">location</p>
                         <input 
                             type="text"
                             name="location"
                             value={location}
                             onChange={handleChange}
-                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
-                    </label>
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end"/>
                 </div>
 
-                <div className="profile-info-div m-2">
-                    <label>artist</label>
-                    <select name="artist_id" onChange={handleChange} className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300">
+                <div className="profile-info-div m-2 flex">
+                    <p className="flex justify-start">artist*</p>
+                    <select name="artist_id" onChange={handleChange} className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end">
                         {artistsToMap.map(artist => <option key={artist.id} value={artist.id} name="artist_id" onChange={handleChange}>{artist.name}</option>)}
                     </select>
                 </div>
 
-                <div>
+                <div className=" m-2 flex">
+                    <p className="flex justify-center text-xs">*if the artist you are looking for is not here, please submit the add artist form first</p>
+                </div>
+
+                <div className="flex justify-center">
                     <button type="submit" className="profile-btn">create new artwork</button>
                 </div>
             </div>
