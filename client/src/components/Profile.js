@@ -59,7 +59,7 @@ function Profile({ onLogout, user, onEditAccountInfo }) {
                         <p className="profile-info-label">email:</p><p className="profile-info">{email}</p>
                     </div>
                 </div>
-                </div>
+            </div>
                     <div className="flex justify-center">
                         {viewingEditForm ? <EditAccountForm 
                                                 user={user} 

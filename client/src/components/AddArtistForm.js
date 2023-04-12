@@ -53,52 +53,59 @@ function AddArtistForm( onAddArtist ) {
     }
 
     return (
-        <div>
+        <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2 flex justify-center content-evenly">
+
+        <h1 className="m-6 text-lg flex justify-center font-bold">add new artist</h1>
 
         <form onSubmit={(e) => handleSubmit(e)}>
-            <div>
-                <div>
-                    <label>name
+            <div className="flex-col flex justify-center">
+
+                <div className="profile-info-div mx-2">
+                    <label >name
                         <input 
                             type="text"
                             name="name"
                             value={name}
-                            onChange={handleChange}/>
+                            onChange={handleChange}
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
                     </label>
                 </div>
 
-                <div>
+                <div className="profile-info-div m-2">
                     <label>nationality
                         <input 
                             type="text"
                             name="nationality"
                             value={nationality}
-                            onChange={handleChange}/>
+                            onChange={handleChange}
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
                     </label>
                 </div>
 
-                <div>
+                <div className="profile-info-div m-2">
                     <label>born
                         <input 
                             type="text"
                             name="born"
                             value={born}
-                            onChange={handleChange}/>
+                            onChange={handleChange}
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
                     </label>
                 </div>
 
-                <div>
+                <div className="profile-info-div m-2">
                     <label>died
                         <input 
                             type="text"
                             name="died"
                             value={died}
-                            onChange={handleChange}/>
+                            onChange={handleChange}
+                            className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300"/>
                     </label>
                 </div>
 
                 <div>
-                    <button type="submit">create new artist</button>
+                    <button type="submit" className="profile-btn">create new artist</button>
                 </div>
             </div>
         </form>
