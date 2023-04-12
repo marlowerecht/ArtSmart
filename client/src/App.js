@@ -18,6 +18,7 @@ function App() {
   const [ comments, setComments ] = useState([])
   const [ searchTerm, setSearchTerm ] = useState('') 
   const [ artists, setArtists ] = useState([])
+  const [ artistsToPassDown, setArtistsToPassDown ] = useState([])
  
 
   // fetches data of current user
@@ -64,7 +65,10 @@ function App() {
     fetch('/artists')
     .then(res => {
         if(res.ok) {
-            return res.json().then((artists) => setArtists(artists))
+            return res.json().then((artists) => {
+              setArtists(artists)
+              setArtistsToPassDown(artists)
+            })
         }
     })
 }, [currentUser])
@@ -138,6 +142,7 @@ function App() {
 
   function onAddArtist(newArtist) {
     setArtists([...artists, newArtist])
+    setArtistsToPassDown([...artistsToPassDown, newArtist])
 }
 
   // sets search value to what user typed in
@@ -148,6 +153,7 @@ function App() {
   // filtered array of paintings matching what user searched for
   const filteredPaintings = paintings.filter(painting => painting.name.toLowerCase().includes(searchTerm.toLowerCase()) || painting.artist.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
+console.log(artistsToPassDown)
 
   return (
     <BrowserRouter>
@@ -217,7 +223,7 @@ function App() {
           <AddArtistForm artists={artists} onAddArtist={onAddArtist}/>
         </Route>
         <Route path='/addartwork'>
-          <AddPaintingForm onAddPainting={onAddPainting} artists={artists}/>
+          <AddPaintingForm onAddPainting={onAddPainting} artists={artistsToPassDown}/>
         </Route>
 
       </div>
