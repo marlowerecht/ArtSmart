@@ -11,7 +11,7 @@ function AddPaintingForm( artists, onAddPainting ) {
         medium: '',
         dimensions: '',
         location: '',
-        artist: ''
+        artist_id: null
     }
 
     // state for painting form data and errors
@@ -19,15 +19,13 @@ function AddPaintingForm( artists, onAddPainting ) {
     const [ errors, setErrors ] = useState([])
 
     // destructuring painting form data
-    const { name, image, period, date, medium, dimensions, location, artist } = paintingFormData
+    const { name, image, period, date, medium, dimensions, location, artist_id } = paintingFormData
 
     // updates painting form data as admin types
     function handleChange(e) {
         const { name, value } = e.target
         setPaintingFormData({...paintingFormData, [name]: value })
     }
-
-    // const artistID = artist.id
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -40,8 +38,10 @@ function AddPaintingForm( artists, onAddPainting ) {
             medium,
             dimensions,
             location,
-            artist
+            artist_id
         }
+
+        console.log(newPainting)
 
         fetch('/paintings', {
             method: 'POST',
@@ -62,13 +62,7 @@ function AddPaintingForm( artists, onAddPainting ) {
         })
     }
 
-    // console.log(artists)
-
-    function mapArtists() {
-        artists.map(artist => {
-            return <option value={artist.id}>artist.name</option>
-        })
-    }
+    const artistsToMap = artists.onAddPainting.artists
 
     return (
         <div>
@@ -147,30 +141,19 @@ function AddPaintingForm( artists, onAddPainting ) {
 
                 <div>
                     <label>artist</label>
-                    <select name="artist">
-                        {mapArtists()}
+                    <select name="artist_id" onChange={handleChange}>
+                        {artistsToMap.map(artist => <option key={artist.id} value={artist.id} name="artist_id" onChange={handleChange}>{artist.name}</option>)}
                     </select>
-                        {/* <input 
-                            type="text"
-                            name="artist"
-                            value={artist}
-                            onChange={handleChange}/> */}
-
                 </div>
 
                 <div>
-                    <button type="submit">create new artist</button>
+                    <button type="submit">create new painting</button>
                 </div>
             </div>
         </form>
         {errors ? <h2 className="mx-4 font-bold text-lg">{errors.map(error => <h3>{error}</h3>)}</h2> : null}
 
         </div>
-
-        //art form
-            //find artist by name
-            //post to db and state
-            //make sure it adds without refreshing
     )
 }
 

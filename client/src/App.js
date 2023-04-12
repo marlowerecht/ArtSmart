@@ -15,7 +15,9 @@ function App() {
   const [ paintings, setPaintings ] = useState([])
   const [ favorites, setFavorites ] = useState([])
   const [ comments, setComments ] = useState([])
-  const [ searchTerm, setSearchTerm ] = useState('')  
+  const [ searchTerm, setSearchTerm ] = useState('') 
+  const [ artists, setArtists ] = useState([])
+ 
 
   // fetches data of current user
   useEffect(() => {
@@ -37,8 +39,6 @@ function App() {
     })
   },[currentUser])
 
-  console.log(paintings)
-
   // fetches all favorites of current user
   useEffect(() => {
     fetch(`/favorites`)
@@ -49,8 +49,6 @@ function App() {
     })
   },[currentUser])
 
-  console.log(favorites)
-
   // fetches all comments
   useEffect(() => {
     fetch('/comments')
@@ -60,6 +58,17 @@ function App() {
       }
     })
   },[currentUser])
+
+  useEffect(() => {
+    fetch('/artists')
+    .then(res => {
+        if(res.ok) {
+            return res.json().then((artists) => setArtists(artists))
+        }
+    })
+}, [currentUser])
+
+// console.log(artists)
 
   // sets current user to logged in user
   function onLogin(user) {
@@ -84,7 +93,6 @@ function App() {
 
   //add paintnig to user's gallery (favorites)
   function onAddFavPainting(painting) {
-    console.log(painting)
     setFavorites([...favorites, painting])
   }
 
@@ -118,7 +126,6 @@ function App() {
 
   // updated account information of current user
   function onEditAccountInfo(updatedUserInfo) {
-    console.log(updatedUserInfo)
     currentUser["name"] = updatedUserInfo.name 
     currentUser["username"] = updatedUserInfo.username
     currentUser["email"] = updatedUserInfo.email
@@ -127,6 +134,10 @@ function App() {
   function onAddPainting(newPainting) {
     setPaintings([...paintings, newPainting])
   }
+
+  function onAddArtist(newArtist) {
+    setArtists([...artists, newArtist])
+}
 
   // sets search value to what user typed in
   function filterSearch(value) {
@@ -202,7 +213,7 @@ function App() {
           <Login onLogin={onLogin}/>
         </Route>
         <Route path='/addart'>
-          <AddArtForms user={currentUser} onAddPainting={onAddPainting}/>
+          <AddArtForms user={currentUser} onAddPainting={onAddPainting} artists={artists} onAddArtist={onAddArtist}/>
         </Route>
 
       </div>
