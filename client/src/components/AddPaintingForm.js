@@ -41,8 +41,6 @@ function AddPaintingForm( artists, onAddPainting ) {
             artist_id
         }
 
-        console.log(newPainting)
-
         fetch('/paintings', {
             method: 'POST',
             headers: {
@@ -62,9 +60,9 @@ function AddPaintingForm( artists, onAddPainting ) {
         })
     }
 
-    const artistsToMap = artists.onAddPainting.artists
+    console.log(artists.artists)
 
-    console.log(artistsToMap)
+    const artistsToMap = artists.artists
 
     return (
         <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2">
@@ -146,7 +144,7 @@ function AddPaintingForm( artists, onAddPainting ) {
                 <div className="profile-info-div m-2 flex">
                     <p className="flex justify-start">artist*</p>
                     <select name="artist_id" onChange={handleChange} className="mx-8 border-2 border-yellow-700 bg-pink-100 bg-opacity-25 rounded px-3 py-2 text-amber-900 shadow-md focus:outline-none focus:border-pink-300 flex justify-end">
-                        {artistsToMap.map(artist => <option key={artist.id} value={artist.id} name="artist_id" onChange={handleChange}>{artist.name}</option>)}
+                        {artistsToMap ? artistsToMap.map(artist => <option key={artist.id} value={artist.id} name="artist_id" onChange={handleChange}>{artist.name}</option>) : null }
                     </select>
                 </div>
 

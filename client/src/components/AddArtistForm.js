@@ -83,7 +83,7 @@ function AddArtistForm( onAddArtist ) {
                 </div>
 
                 <div className="profile-info-div m-2 flex">
-                    <p classNam="flex justify-start">born</p>
+                    <p className="flex justify-start">born</p>
                         <input 
                             type="text"
                             name="born"
