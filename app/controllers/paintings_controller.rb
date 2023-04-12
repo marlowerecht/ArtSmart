@@ -10,7 +10,7 @@ class PaintingsController < ApplicationController
 
     def create
         new_painting = Painting.create!(painting_params)
-        render json :new_painting, status: :created
+        render json: new_painting, status: :created
     end
 
     def update
