@@ -5,8 +5,7 @@ import AddPaintingForm from './AddPaintingForm'
 function AddArtForms( onAddPainting, artists, onAddArtist ) {
 
     return (
-        <div>
-            {/* {artists ? <h1>loaded</h1> : <h1>not yet</h1>} */}
+        <div className="flex justify-center">
             <AddArtistForm onAddArtist={onAddArtist}/>
             <AddPaintingForm artists={artists} onAddPainting={onAddPainting}/>
         </div>
