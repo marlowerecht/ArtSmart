@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
+
 
 function AddArtistForm({ onAddArtist }) {
+    const history = useHistory()
+
 
     // initial artist form values
     const initialArtistValues = {
@@ -46,7 +50,7 @@ function AddArtistForm({ onAddArtist }) {
                     setArtistFormData(initialArtistValues)
                     alert(`${newArtist.name} has been created!`)
                     onAddArtist(newArtist)
-                    window.location.reload(true)
+                    history.push('/profile')
                 })
             } else {
                 res.json().then((errors) => setErrors(errors.errors))
