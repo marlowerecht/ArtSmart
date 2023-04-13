@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function AddArtistForm( onAddArtist ) {
+function AddArtistForm({ onAddArtist }) {
 
     // initial artist form values
     const initialArtistValues = {
@@ -44,7 +44,9 @@ function AddArtistForm( onAddArtist ) {
             if(res.ok) {
                 res.json().then(() => {
                     setArtistFormData(initialArtistValues)
+                    alert(`${newArtist.name} has been created!`)
                     onAddArtist(newArtist)
+                    window.location.reload(true)
                 })
             } else {
                 res.json().then((errors) => setErrors(errors.errors))
@@ -53,7 +55,9 @@ function AddArtistForm( onAddArtist ) {
     }
 
     return (
-        <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2">
+        <div className="flex justify-center">
+
+        <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2 flex justify-center">
 
         <div>
 
@@ -108,6 +112,8 @@ function AddArtistForm( onAddArtist ) {
             </div>
         </form>
         {errors ? <h2 className="mx-4 font-bold text-lg">{errors.map(error => <h3>{error}</h3>)}</h2> : null}
+
+        </div>
 
         </div>
 

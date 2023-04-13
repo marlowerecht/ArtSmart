@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import EditAccountForm from './EditAccountForm.js'
 
-function Profile({ onLogout, user, onEditAccountInfo }) {
+function Profile({ onLogout, user, onEditAccountInfo, onAddNewPainting }) {
     const history = useHistory()
 
     const [ viewingEditForm, setViewingEditForm ] = useState(false)
