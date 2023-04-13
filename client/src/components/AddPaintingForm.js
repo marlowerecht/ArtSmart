@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
+
 
 function AddPaintingForm({ artists, onAddNewPainting, wrapSetCount }) {
+    const history = useHistory()
 
     console.log(artists)
 
@@ -57,6 +60,8 @@ function AddPaintingForm({ artists, onAddNewPainting, wrapSetCount }) {
                     setPaintingFormData(initialPaintingValues)
                     alert(`${newPainting.name} has been created!`)
                     wrapSetCount()
+                    history.push('/profile')
+
                 })
             } else {
                 res.json().then((errors) => setErrors(errors.errors))
@@ -64,9 +69,22 @@ function AddPaintingForm({ artists, onAddNewPainting, wrapSetCount }) {
         })
         .catch((res) => console.log(res))
     }
-    const artistsToMap = artists
 
-    console.log(onAddNewPainting)
+    const sortedArtists = artists.sort(function(a, b) {
+        const artistA = a.name.toUpperCase(); // ignore upper and lowercase
+        const artistB = b.name.toUpperCase(); // ignore upper and lowercase
+        if (artistA > artistB) {
+          return 1;
+        }
+        if (artistA < artistB) {
+          return -1;
+        }
+      
+        // names must be equal
+        return 0;
+      });
+
+    const artistsToMap = sortedArtists
 
     return (
         <div className="flex justify-center">
