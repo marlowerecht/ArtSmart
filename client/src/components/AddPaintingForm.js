@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-function AddPaintingForm( artists, onAddNewPainting ) {
+function AddPaintingForm({ artists, onAddNewPainting, wrapSetCount }) {
+
+    console.log(artists)
 
     // initial painting form values
     const initialPaintingValues = {
@@ -50,21 +52,25 @@ function AddPaintingForm( artists, onAddNewPainting ) {
         })
         .then((res) => {
             if(res.ok) {
-                res.json().then(() => {
+                res.json().then((data) => {
+                    onAddNewPainting(data)
                     setPaintingFormData(initialPaintingValues)
-                    onAddNewPainting(newPainting)
+                    alert(`${newPainting.name} has been created!`)
+                    wrapSetCount()
                 })
             } else {
                 res.json().then((errors) => setErrors(errors.errors))
             }
         })
+        .catch((res) => console.log(res))
     }
+    const artistsToMap = artists
 
-    console.log(artists.artists)
-
-    const artistsToMap = artists.artists
+    console.log(onAddNewPainting)
 
     return (
+        <div className="flex justify-center">
+
         <div className="text-amber-900 shadow-md rounded m-4 bg-orange-200 w-1/3 p-2">
 
         <h1 className="m-6 text-lg flex justify-center font-bold">add new artwork</h1>
@@ -158,6 +164,8 @@ function AddPaintingForm( artists, onAddNewPainting ) {
             </div>
         </form>
         {errors ? <h2 className="mx-4 font-bold text-lg">{errors.map(error => <h3>{error}</h3>)}</h2> : null}
+
+        </div>
 
         </div>
     )

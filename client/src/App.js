@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from './components/Login.js';
 import Homepage from './components/Homepage.js';
@@ -18,8 +18,11 @@ function App() {
   const [ comments, setComments ] = useState([])
   const [ searchTerm, setSearchTerm ] = useState('') 
   const [ artists, setArtists ] = useState([])
-  // const [ artistsToPassDown, setArtistsToPassDown ] = useState([])
- 
+  const [ count, setCount ] = useState(0)
+
+  // const onAddNewPainting = useCallback((newPainting) => {
+  //   setPaintings([...paintings, newPainting]);
+  // }, []);
 
   // fetches data of current user
   useEffect(() => {
@@ -36,7 +39,7 @@ function App() {
     fetch('/paintings')
     .then(res => {
       if(res.ok) {
-        return res.json().then((paintings) => setPaintings(paintings))
+        res.json().then((paintings) => setPaintings(paintings))
       }
     })
   },[currentUser])
@@ -71,7 +74,7 @@ function App() {
             })
         }
     })
-}, [currentUser, artists])
+}, [currentUser])
 
 // console.log(artists)
 
@@ -136,14 +139,23 @@ function App() {
     currentUser["email"] = updatedUserInfo.email
   }
 
-  function onAddNewPainting(newPainting) {
-    setPaintings([...paintings, newPainting])
+  // const onAddNewPainting = (newPainting) => {
+
+  //   setPaintings([...paintings, newPainting])
+  //   console.log(count)
+  // }
+
+  function onAddNewPainting(painting) {
+    setPaintings([...paintings, painting])
   }
 
   function onAddArtist(newArtist) {
     setArtists([...artists, newArtist])
-    // setArtistsToPassDown([...artistsToPassDown, newArtist])
 }
+
+  function wrapSetCount() {
+    setCount((prev) => prev + 1)
+  }
 
   // sets search value to what user typed in
   function filterSearch(value) {
@@ -161,7 +173,6 @@ function App() {
           <Route path="/mygallery">
             {!currentUser ? <Login onLogin={onLogin}/> :
               <>
-                {/* <Header user={currentUser} /> */}
                 <MyGallery 
                   favorites={favorites} 
                   user={currentUser} 
@@ -181,7 +192,8 @@ function App() {
                 <Profile 
                   onLogout={onLogout}
                   user={currentUser}
-                  onEditAccountInfo={onEditAccountInfo}/>
+                  onEditAccountInfo={onEditAccountInfo}
+                  onAddNewPainting={onAddNewPainting}/>
               </>
             }
           </Route>
@@ -221,7 +233,7 @@ function App() {
           <AddArtistForm artists={artists} onAddArtist={onAddArtist}/>
         </Route>
         <Route path='/addartwork'>
-          <AddPaintingForm onAddNewPainting={onAddNewPainting} artists={artists}/>
+          <AddPaintingForm onAddNewPainting={onAddNewPainting} artists={artists} wrapSetCount={wrapSetCount}/>
         </Route>
 
       </div>
