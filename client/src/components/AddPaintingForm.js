@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function AddPaintingForm( artists, onAddPainting ) {
+function AddPaintingForm( artists, onAddNewPainting ) {
 
     // initial painting form values
     const initialPaintingValues = {
@@ -51,8 +51,8 @@ function AddPaintingForm( artists, onAddPainting ) {
         .then((res) => {
             if(res.ok) {
                 res.json().then(() => {
-                    onAddPainting(newPainting)
                     setPaintingFormData(initialPaintingValues)
+                    onAddNewPainting(newPainting)
                 })
             } else {
                 res.json().then((errors) => setErrors(errors.errors))
