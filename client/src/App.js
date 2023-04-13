@@ -68,10 +68,7 @@ function App() {
     fetch('/artists')
     .then(res => {
         if(res.ok) {
-            return res.json().then((artists) => {
-              setArtists(artists)
-              // setArtistsToPassDown(artists)
-            })
+             res.json().then((artists) => setArtists(artists))
         }
     })
 }, [currentUser])
@@ -230,7 +227,7 @@ function App() {
           <Login onLogin={onLogin}/>
         </Route>
         <Route path='/addartist'>
-          <AddArtistForm artists={artists} onAddArtist={onAddArtist}/>
+          <AddArtistForm artists={artists} onAddArtist={onAddArtist} wrapSetCount={wrapSetCount}/>
         </Route>
         <Route path='/addartwork'>
           <AddPaintingForm onAddNewPainting={onAddNewPainting} artists={artists} wrapSetCount={wrapSetCount}/>

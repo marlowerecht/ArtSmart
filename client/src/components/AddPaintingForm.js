@@ -56,6 +56,8 @@ function AddPaintingForm({ artists, onAddNewPainting, wrapSetCount }) {
         .then((res) => {
             if(res.ok) {
                 res.json().then((data) => {
+                    console.log(data)
+
                     onAddNewPainting(data)
                     setPaintingFormData(initialPaintingValues)
                     alert(`${newPainting.name} has been created!`)
