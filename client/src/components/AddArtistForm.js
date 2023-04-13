@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 
-function AddArtistForm({ onAddArtist }) {
+function AddArtistForm({ onAddArtist, wrapSetCount }) {
     const history = useHistory()
 
 
@@ -46,10 +46,12 @@ function AddArtistForm({ onAddArtist }) {
         })
         .then((res) => {
             if(res.ok) {
-                res.json().then(() => {
+                res.json().then((data) => {
+                    console.log(data)
+                    onAddArtist(data)
                     setArtistFormData(initialArtistValues)
                     alert(`${newArtist.name} has been created!`)
-                    onAddArtist(newArtist)
+                    wrapSetCount()
                     history.push('/profile')
                 })
             } else {
