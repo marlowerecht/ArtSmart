@@ -22,12 +22,11 @@ class ApplicationController < ActionController::API
     end 
 
     def authorize
-      # render json: { error: "Not authorized, please login" }, status: :unauthorized unless @current_user
       return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
     end
 
     def admin_user
-      admin = User.find_by(name: "admin")
+      admin = User.find_by(username: "admin")
       return render json: { error: "only admins have access" }, status: unauthorized unless session[:user_id] == admin.id
     end
 end

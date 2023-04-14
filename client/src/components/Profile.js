@@ -76,7 +76,7 @@ function Profile({ onLogout, user, onEditAccountInfo, onAddNewPainting }) {
 
                     <div className="flex justify-center">
 
-                        {user.name == 'admin' ? 
+                        {user.username === 'admin' ? 
                             <div>
                                 <button onClick={handleAddArtist} className="profile-btn">add artist</button>
                             </div>
@@ -84,7 +84,7 @@ function Profile({ onLogout, user, onEditAccountInfo, onAddNewPainting }) {
                             null
                         }
 
-                        {user.name == 'admin' ? 
+                        {user.username === 'admin' ? 
                             <div >
                                 <button onClick={handleAddArtwork} className="profile-btn">add artwork</button>
                             </div>

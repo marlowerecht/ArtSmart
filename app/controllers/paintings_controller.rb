@@ -1,3 +1,4 @@
+
 class PaintingsController < ApplicationController
 
     before_action :admin_user, only: [:create, :update, :destroy]
